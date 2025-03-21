@@ -1,41 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, StyleSheet, Animated } from 'react-native';
+import { View, Text, Animated, StyleSheet } from 'react-native';
+import { Asset } from 'expo-asset'; // Import Asset for resolving image paths
+import { Image } from 'react-native';
 
 export default function SplashScreen() {
-  // Animated values for the logo and motto text
-  const [logoOpacity] = useState(new Animated.Value(0)); // Logo starts with opacity 0
-  const [mottoOpacity] = useState(new Animated.Value(0)); // Motto text starts with opacity 0
-  const [logoScale] = useState(new Animated.Value(0.8)); // Initial scale for animation
+  const [logoOpacity] = useState(new Animated.Value(0));
+  const [logoScale] = useState(new Animated.Value(0.8));
+  const [mottoOpacity] = useState(new Animated.Value(0));
 
   useEffect(() => {
-    // Start logo animation: fade in and scale up
+    // Fade in and scale up the logo
     Animated.timing(logoOpacity, {
       toValue: 1,
-      duration: 1500, // 1.5 seconds duration
+      duration: 1500,
       useNativeDriver: true,
     }).start();
 
-    // Scale up logo animation
     Animated.timing(logoScale, {
       toValue: 1,
       duration: 1500,
       useNativeDriver: true,
     }).start();
 
-    // Fade in the motto text after a delay
+    // Fade in the motto text
     setTimeout(() => {
       Animated.timing(mottoOpacity, {
         toValue: 1,
         duration: 1500,
         useNativeDriver: true,
       }).start();
-    }, 1500); // Delay by 1.5 seconds
+    }, 1500);
   }, []);
+
+  const imageUri = Asset.fromModule(require('../images/trapmos.png')).uri;
 
   return (
     <View style={styles.container}>
       <Animated.Image
-        source={require('../images/trapmos.png')} // Update the path to your image
+        source={{ uri: imageUri }} // Ensure the correct URI is used
         style={[
           styles.logo,
           {
@@ -43,12 +45,13 @@ export default function SplashScreen() {
             transform: [{ scale: logoScale }],
           },
         ]}
+        onError={(error) => console.error('Image load error:', error.nativeEvent)}
       />
       <Animated.Text
         style={[
           styles.motto,
           {
-            opacity: mottoOpacity, // Apply animated opacity to text
+            opacity: mottoOpacity,
           },
         ]}
       >
@@ -66,14 +69,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width: 300, // Adjust size as needed
-    height: 300, // Adjust size as needed
+    width: 300,
+    height: 300,
     resizeMode: 'contain',
   },
   motto: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#000000', // Ensure this contrasts with your background color
+    color: '#000000',
     textAlign: 'center',
     marginHorizontal: 20,
     marginTop: 20,

@@ -17,13 +17,9 @@ export default function HomeScreen() {
         <Text style={styles.title}>Dashboard</Text>
       </View>
       <View style={styles.grid}>
-        <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Profile')}>
-          <FontAwesome name="user-circle-o" size={30} color="#fff" />
-          <Text style={styles.cardText}>Profile</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.card, styles.cardLight]} onPress={() => navigation.navigate('Statistics')}>
-          <MaterialIcons name="show-chart" size={30} color="#000" />
-          <Text style={styles.cardTextDark}>Statistics</Text>
+        <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Statistics')}>
+          <MaterialIcons name="show-chart" size={30} color="#fff" />
+          <Text style={styles.cardText}>Statistics</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Alerts')}>
           <Ionicons name="notifications-outline" size={30} color="#fff" />
@@ -37,10 +33,13 @@ export default function HomeScreen() {
           <MaterialIcons name="storage" size={30} color="#fff" />
           <Text style={styles.cardText}>Database</Text>
         </TouchableOpacity>
+        {/* Add the new Upload Screen button */}
+        <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('UploadScreen')}>
+          <Ionicons name="cloud-upload-outline" size={30} color="#fff" />
+          <Text style={styles.cardText}>Upload Photo</Text>
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-        <Text style={styles.logoutText}>Logout</Text>
-      </TouchableOpacity>
+      {/* Removed Logout Button */}
     </View>
   );
 }
@@ -79,30 +78,14 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     padding: 10,
   },
-  cardLight: {
-    backgroundColor: '#ffffff',
-  },
   cardText: {
     color: '#ffffff',
     fontSize: 16,
     marginTop: 8,
   },
   cardTextDark: {
-    color: '#000000',
+    color: '#ffffff', // Match text color with other buttons
     fontSize: 16,
     marginTop: 8,
-  },
-  logoutButton: {
-    backgroundColor: '#d9534f',
-    borderRadius: 25,
-    paddingVertical: 15,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginHorizontal: 20,
-  },
-  logoutText: {
-    color: '#ffffff',
-    fontSize: 18,
-    fontWeight: 'bold',
   },
 });

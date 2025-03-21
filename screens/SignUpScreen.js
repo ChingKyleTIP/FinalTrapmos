@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { View, TextInput, TouchableOpacity, Text, StyleSheet, Image, Alert } from "react-native";
+import {
+  View,
+  TextInput,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  Image,
+  Alert,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
@@ -24,7 +32,6 @@ const SignUpScreen = () => {
     }
 
     try {
-      // Create user with Firebase Authentication
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
@@ -35,7 +42,7 @@ const SignUpScreen = () => {
       });
 
       Alert.alert("Success", "Sign Up Successful!");
-      navigation.replace("Login"); // Redirect to Login screen
+      navigation.replace("Login");
     } catch (error) {
       Alert.alert("Error", error.message);
     }
@@ -43,20 +50,38 @@ const SignUpScreen = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.topSection}>
-        <Image source={require("../images/trapmosLogin.png")} style={styles.logo} />
+      {/* Logo */}
+      <Image
+        source={require("../images/trapmosLogin.png")}
+        style={styles.logo}
+        resizeMode="contain"
+      />
+
+      {/* Login/Sign-Up Tabs */}
+      <View style={styles.tabs}>
+        <TouchableOpacity
+          style={styles.tab}
+          onPress={() => navigation.navigate("Login")}
+        >
+          <Text style={styles.tabText}>Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.tab, styles.activeTab]}>
+          <Text style={[styles.tabText, styles.activeTabText]}>Sign up</Text>
+        </TouchableOpacity>
       </View>
-      <View style={styles.formSection}>
+
+      {/* Form */}
+      <View style={styles.formContainer}>
         <TextInput
           style={styles.input}
-          placeholder="Enter your name"
+          placeholder="Name"
           value={name}
           onChangeText={setName}
           placeholderTextColor="#a9a9a9"
         />
         <TextInput
           style={styles.input}
-          placeholder="Enter your email address"
+          placeholder="Email"
           value={email}
           onChangeText={setEmail}
           keyboardType="email-address"
@@ -64,7 +89,7 @@ const SignUpScreen = () => {
         />
         <TextInput
           style={styles.input}
-          placeholder="Enter your password"
+          placeholder="Password"
           value={password}
           onChangeText={setPassword}
           secureTextEntry
@@ -72,7 +97,7 @@ const SignUpScreen = () => {
         />
         <TextInput
           style={styles.input}
-          placeholder="Confirm your password"
+          placeholder="Confirm Password"
           value={confirmPassword}
           onChangeText={setConfirmPassword}
           secureTextEntry
@@ -80,9 +105,6 @@ const SignUpScreen = () => {
         />
         <TouchableOpacity style={styles.signUpButton} onPress={handleSignUp}>
           <Text style={styles.signUpButtonText}>Sign Up</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-          <Text style={styles.loginLink}>Already have an account? Log In</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -92,51 +114,68 @@ const SignUpScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#1b2a38",
-  },
-  topSection: {
-    height: "25%",
-    backgroundColor: "#ffffff",
+    backgroundColor: "#012A4A",
     alignItems: "center",
-    justifyContent: "center",
+    paddingHorizontal: 20,
+    paddingTop: 50,
   },
   logo: {
     width: 150,
-    height: 150,
-    resizeMode: "contain",
+    height: 80,
+    marginBottom: 20,
   },
-  formSection: {
+  tabs: {
+    flexDirection: "row",
+    width: "100%",
+    justifyContent: "center",
+    marginBottom: 20,
+  },
+  tab: {
     flex: 1,
-    backgroundColor: "#1b2a38",
     alignItems: "center",
-    paddingTop: 20,
+    paddingVertical: 10,
+    borderBottomWidth: 2,
+    borderBottomColor: "transparent",
+  },
+  activeTab: {
+    borderBottomColor: "#ffffff",
+  },
+  tabText: {
+    color: "#a9a9a9",
+    fontSize: 16,
+  },
+  activeTabText: {
+    color: "#ffffff",
+    fontWeight: "bold",
+  },
+  formContainer: {
+    width: "100%",
+    alignItems: "center",
   },
   input: {
-    backgroundColor: "#324a5e",
+    backgroundColor: "#013A63",
     borderRadius: 25,
     height: 50,
-    width: "80%",
+    width: "100%",
+    maxWidth: 400,
     paddingHorizontal: 15,
-    color: "#fff",
+    color: "#ffffff",
     marginBottom: 15,
   },
   signUpButton: {
-    backgroundColor: "#d3d3d3",
+    backgroundColor: "#0284C7",
     borderRadius: 25,
     height: 50,
-    alignItems: "center",
     justifyContent: "center",
-    width: "80%",
-    marginVertical: 15,
+    alignItems: "center",
+    width: "100%",
+    maxWidth: 400,
+    marginBottom: 20,
   },
   signUpButtonText: {
-    color: "#1b2a38",
+    color: "#ffffff",
     fontWeight: "bold",
-  },
-  loginLink: {
-    color: "#d3d3d3",
-    textDecorationLine: "underline",
-    marginTop: 15,
+    fontSize: 16,
   },
 });
 
