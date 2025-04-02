@@ -41,7 +41,10 @@
     "react-native-svg": "^15.8.0",
     "react-native-vector-icons": "*",
     "react-native-web": "~0.19.13",
-    "undefined": "expo-auth-session/providers/apple"
+    "undefined": "expo-auth-session/providers/apple",
+    "expo-haptics": "~14.0.1",
+    "expo-av": "~15.0.2",
+    "expo-location": "~18.0.8"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

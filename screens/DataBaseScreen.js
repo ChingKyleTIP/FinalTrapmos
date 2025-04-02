@@ -1,50 +1,50 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Image, ScrollView, Alert } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  Alert,
+  TouchableOpacity,
+} from 'react-native';
 import { getDocs, collection } from 'firebase/firestore';
-import { storage, db } from '../config/firebaseConfig'; // import Firestore and Storage
-import { ref, getDownloadURL } from 'firebase/storage'; // import Storage
+import { storage, db } from '../config/firebaseConfig';
+import { ref, getDownloadURL } from 'firebase/storage';
+import { useNavigation } from '@react-navigation/native';
 
 export default function DataBaseScreen() {
-  const [imageUrls, setImageUrls] = useState([]);
+  const [imageData, setImageData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigation = useNavigation();
 
-  // Function to load all images from Firestore
   const loadAllImagesFromFirestore = async () => {
     try {
       setLoading(true);
 
-      // Reference to the "Uploads" collection in Firestore
       const uploadsRef = collection(db, 'Uploads');
       const querySnapshot = await getDocs(uploadsRef);
 
-      const fetchedUrls = [];
-
-      // Loop through each document in the collection
-      querySnapshot.forEach((doc) => {
+      const imagePromises = querySnapshot.docs.map(async (doc) => {
         const data = doc.data();
-        const fileName = data.file; // File name from Firestore
-
-        console.log('📂 Retrieved file name:', fileName);
-
-        // Create reference to the file in Firebase Storage
+        const fileName = data.file;
+        const { latitude, longitude, device } = data;
         const fileRef = ref(storage, `TRAPMOS_00000/${fileName}`);
 
-        // Get download URL for each file
-        getDownloadURL(fileRef)
-          .then((url) => {
-            console.log('🌐 Retrieved URL for file:', url);
-            fetchedUrls.push(url); // Store URL in array
-            if (fetchedUrls.length === querySnapshot.size) {
-              // Once all URLs are fetched, update state
-              setImageUrls(fetchedUrls);
-            }
-          })
-          .catch((error) => {
-            console.error('🔥 Error getting download URL for file: ', error);
-          });
+        try {
+          const url = await getDownloadURL(fileRef);
+          return { url, fileName, latitude, longitude, device };
+        } catch (error) {
+          console.error('🔥 Error getting URL:', fileName, error);
+          return null;
+        }
       });
+
+      const results = await Promise.all(imagePromises);
+      const filtered = results.filter((entry) => entry !== null);
+      setImageData(filtered);
     } catch (error) {
-      console.error('🔥 Error loading images from Firestore: ', error);
+      console.error('🔥 Error loading images from Firestore:', error);
       Alert.alert('Error', 'Could not load images from Firestore.');
     } finally {
       setLoading(false);
@@ -52,24 +52,39 @@ export default function DataBaseScreen() {
   };
 
   useEffect(() => {
-    loadAllImagesFromFirestore(); // Call the function when the component mounts
+    loadAllImagesFromFirestore();
   }, []);
+
+  const handlePress = (item) => {
+    if (item.latitude && item.longitude) {
+      navigation.navigate('Map', {
+        latitude: item.latitude,
+        longitude: item.longitude,
+        device: item.device || '',
+        file: item.fileName,
+      });
+    } else {
+      Alert.alert('Location not available', 'This entry does not have location data.');
+    }
+  };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Database Screen</Text>
-      <Text style={styles.text}>Loading all JPGs from Firestore</Text>
+      <Text style={styles.text}>Tap an image to view its location</Text>
 
       {loading ? (
         <Text style={styles.text}>Loading images...</Text>
-      ) : imageUrls.length > 0 ? (
-        imageUrls.map((url, idx) => (
-          <Image
+      ) : imageData.length > 0 ? (
+        imageData.map((item, idx) => (
+          <TouchableOpacity
             key={idx}
-            source={{ uri: url }}
-            style={styles.image}
-            resizeMode="contain"
-          />
+            onPress={() => handlePress(item)}
+            style={styles.imageContainer}
+          >
+            <Image source={{ uri: item.url }} style={styles.image} resizeMode="cover" />
+            <Text style={styles.filename}>{item.fileName}</Text>
+          </TouchableOpacity>
         ))
       ) : (
         <Text style={styles.text}>No images found.</Text>
@@ -96,12 +111,21 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 10,
   },
+  imageContainer: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
   image: {
-    width: 300,
-    height: 300,
-    marginVertical: 10,
+    width: 200,
+    height: 200,
     borderRadius: 8,
     borderWidth: 1,
     borderColor: '#ccc',
+  },
+  filename: {
+    marginTop: 6,
+    color: '#fff',
+    fontSize: 14,
+    textAlign: 'center',
   },
 });

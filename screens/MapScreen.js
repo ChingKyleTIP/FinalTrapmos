@@ -1,22 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Button, Alert } from 'react-native';
+import { View, Text, StyleSheet, Button, Alert, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import MapView, { Marker, Circle } from 'react-native-maps';
 import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../config/firebaseConfig'; // import Firestore config
+import { db } from '../config/firebaseConfig';
+import { BarChart } from 'react-native-chart-kit';
 
 export default function MapScreen() {
   const navigation = useNavigation();
-  const [locations, setLocations] = useState([]); // State to store the locations
+  const [locations, setLocations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [region, setRegion] = useState({
-    latitude: 14.1234, // Default center latitude
-    longitude: 121.1234, // Default center longitude
-    latitudeDelta: 0.0922, // Zoom level
-    longitudeDelta: 0.0421, // Zoom level
+    latitude: 14.1234,
+    longitude: 121.1234,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
   });
 
-  // Function to load locations from Firestore
+  const [detectionCounts, setDetectionCounts] = useState({
+    detected: 0,
+    notDetected: 0,
+  });
+
   const loadLocations = async () => {
     try {
       setLoading(true);
@@ -24,22 +29,41 @@ export default function MapScreen() {
       const querySnapshot = await getDocs(uploadsRef);
 
       const fetchedLocations = [];
+      let detectedCount = 0;
+      let notDetectedCount = 0;
+
       querySnapshot.forEach((doc) => {
         const data = doc.data();
-        const { latitude, longitude, file } = data; // Extract latitude and longitude from Firestore
+        let { latitude, longitude, file, detections } = data;
 
-        if (latitude && longitude) {
+        latitude = parseFloat(latitude);
+        longitude = parseFloat(longitude);
+        const isValid = !isNaN(latitude) && !isNaN(longitude);
+
+        if (isValid) {
+          const isDetected = detections && detections.length > 0;
+
+          if (isDetected) {
+            detectedCount++;
+          } else {
+            notDetectedCount++;
+          }
+
           fetchedLocations.push({
             fileName: file,
             latitude,
             longitude,
+            isDetected,
           });
         }
       });
 
-      setLocations(fetchedLocations); // Store the locations in state
+      setDetectionCounts({
+        detected: detectedCount,
+        notDetected: notDetectedCount,
+      });
+      setLocations(fetchedLocations);
 
-      // Set the region based on the first location for better centering (optional)
       if (fetchedLocations.length > 0) {
         setRegion({
           latitude: fetchedLocations[0].latitude,
@@ -57,8 +81,19 @@ export default function MapScreen() {
   };
 
   useEffect(() => {
-    loadLocations(); // Call the function when the screen mounts
+    loadLocations();
   }, []);
+
+  const graphData = {
+    labels: ['Detected', 'Not Detected'],
+    datasets: [
+      {
+        data: [detectionCounts.detected, detectionCounts.notDetected],
+        color: (opacity = 1) => `rgba(255, 0, 0, ${opacity})`,
+        strokeWidth: 2,
+      },
+    ],
+  };
 
   return (
     <View style={styles.container}>
@@ -70,39 +105,59 @@ export default function MapScreen() {
       ) : (
         <MapView
           style={styles.map}
-          region={region} // Dynamic region for better control over map's center
-          onRegionChangeComplete={(newRegion) => setRegion(newRegion)} // Allow region updates on drag/zoom
-          showsUserLocation={true} // Optionally show user location
-          followUserLocation={true} // Track user's location in real-time
-          showsMyLocationButton={true} // Show the "My Location" button
+          region={region}
+          onRegionChangeComplete={(newRegion) => setRegion(newRegion)}
+          showsUserLocation={true}
+          followUserLocation={true}
+          showsMyLocationButton={true}
         >
           {locations.map((location, index) => (
             <React.Fragment key={index}>
-              {/* Marker for each location */}
               <Marker
                 coordinate={{
                   latitude: location.latitude,
                   longitude: location.longitude,
                 }}
-                title={location.fileName} // Title for the marker (file name)
+                title={location.fileName}
               />
-              
-              {/* Circle with a 250-meter radius around the marker */}
               <Circle
                 center={{
                   latitude: location.latitude,
                   longitude: location.longitude,
                 }}
-                radius={250} // 250 meters radius
-                strokeColor="rgba(0, 255, 0, 0.5)"
-                fillColor="rgba(0, 255, 0, 0.2)"
+                radius={250}
+                strokeColor="rgba(255, 0, 0, 0.7)"
+                fillColor="rgba(255, 0, 0, 0.3)"
               />
             </React.Fragment>
           ))}
         </MapView>
       )}
 
-      <Button title="Go Back" onPress={() => navigation.goBack()} />
+      <View style={styles.graphContainer}>
+        <Text style={styles.graphTitle}>Aedes Mosquito Detection</Text>
+        <BarChart
+          style={styles.chart}
+          data={graphData}
+          width={Dimensions.get('window').width - 40}
+          height={220}
+          chartConfig={{
+            backgroundColor: '#0f1924',
+            backgroundGradientFrom: '#0f1924',
+            backgroundGradientTo: '#0f1924',
+            decimalPlaces: 0,
+            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            style: {
+              borderRadius: 16,
+            },
+          }}
+        />
+      </View>
+
+      <View style={styles.buttonContainer}>
+        <Button title="Go Back" onPress={() => navigation.goBack()} />
+      </View>
     </View>
   );
 }
@@ -110,25 +165,42 @@ export default function MapScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#0f1924',
+    padding: 20,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     color: '#ffffff',
-    marginBottom: 10,
+    marginBottom: 20,
   },
   text: {
     fontSize: 16,
     color: '#a5a5a5',
     textAlign: 'center',
     paddingHorizontal: 20,
+    marginBottom: 20,
   },
   map: {
     width: '100%',
-    height: '70%', // Adjust the height of the map
-    marginVertical: 10,
+    height: 300,
+    marginBottom: 20,
+  },
+  graphContainer: {
+    marginTop: 20,
+    paddingHorizontal: 10,
+  },
+  graphTitle: {
+    fontSize: 18,
+    color: '#ffffff',
+    marginBottom: 10,
+  },
+  chart: {
+    marginTop: 10,
+    marginBottom: 20,
+  },
+  buttonContainer: {
+    marginTop: 20,
+    width: '100%',
   },
 });
