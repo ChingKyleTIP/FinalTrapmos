@@ -88,19 +88,38 @@ export default function MapScreen() {
 
   return (
     <View style={styles.container}>
+      {/* Persistent Location Card */}
+      {userLocation && (
+        <View style={styles.userLocationCard}>
+          <Text style={styles.userLocationText}>📍 Your Location</Text>
+          <Text style={styles.userLocationText}>
+            Longitude: {userLocation.longitude.toFixed(7)}
+          </Text>
+          <Text style={styles.userLocationText}>
+            Latitude:  {userLocation.latitude.toFixed(7)}
+          </Text>
+        </View>
+      )}
+
       {userLocation && (
         <MapView
           ref={mapRef}
           style={styles.map}
           initialRegion={userLocation}
-          showsUserLocation
+          showsUserLocation={true}
         >
+          <Marker
+            coordinate={userLocation}
+            pinColor="blue"
+            title={`You are here\nLongitude: ${userLocation.longitude.toFixed(7)}\nLatitude: ${userLocation.latitude.toFixed(7)}`}
+          />
+
           {locations.map((loc, index) => (
             <React.Fragment key={index}>
               <Marker
                 coordinate={{ latitude: loc.latitude, longitude: loc.longitude }}
                 pinColor={loc.isDetected ? 'red' : 'green'}
-                title={loc.fileName}
+                title={`${loc.fileName || 'Unknown'}\nLat: ${loc.latitude.toFixed(5)} | Lng: ${loc.longitude.toFixed(5)}`}
               />
               <Circle
                 center={{ latitude: loc.latitude, longitude: loc.longitude }}
@@ -113,7 +132,7 @@ export default function MapScreen() {
         </MapView>
       )}
 
-      {/* Legend - bottom left like Google Maps */}
+      {/* Legend */}
       <View style={styles.legendOverlay}>
         <View style={styles.legendItem}>
           <View style={[styles.dot, { backgroundColor: 'red' }]} />
@@ -123,22 +142,32 @@ export default function MapScreen() {
           <View style={[styles.dot, { backgroundColor: 'green' }]} />
           <Text style={styles.legendText}>No Detection</Text>
         </View>
+        <View style={styles.legendItem}>
+          <View style={[styles.dot, { backgroundColor: 'blue' }]} />
+          <Text style={styles.legendText}>You</Text>
+        </View>
       </View>
 
-      {/* Location List */}
+      {/* Location List with kilometers + meters */}
       <ScrollView style={styles.locationList}>
         <Text style={styles.listTitle}>Location List (sorted by proximity)</Text>
-        {locations.map((loc, index) => (
-          <TouchableOpacity
-            key={index}
-            onPress={() => focusOnLocation(loc)}
-            style={styles.locationBox}
-          >
-            <Text style={styles.locationText}>
-              • {loc.fileName || 'Unknown'} — {loc.distance.toFixed(2)} kilometers away from you
-            </Text>
-          </TouchableOpacity>
-        ))}
+        {locations.map((loc, index) => {
+          const kilometers = Math.floor(loc.distance);
+          const meters = Math.round((loc.distance % 1) * 1000);
+          return (
+            <TouchableOpacity
+              key={index}
+              onPress={() => focusOnLocation(loc)}
+              style={styles.locationBox}
+            >
+              <Text style={styles.locationText}>
+                • {loc.fileName || 'Unknown'} — {kilometers} kilometers and {meters} meters away from you
+                {'\n'}Longitude: {loc.longitude.toFixed(7)}
+                {'\n'}Latitude:  {loc.latitude.toFixed(7)}
+              </Text>
+            </TouchableOpacity>
+          );
+        })}
       </ScrollView>
     </View>
   );
@@ -147,6 +176,23 @@ export default function MapScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#0f1924' },
   map: { flex: 1 },
+  userLocationCard: {
+    position: 'absolute',
+    top: 40,
+    left: 20,
+    right: 20,
+    zIndex: 999,
+    backgroundColor: '#1a2b3c',
+    padding: 12,
+    borderRadius: 10,
+    borderColor: '#4dd0e1',
+    borderWidth: 1,
+  },
+  userLocationText: {
+    color: '#fff',
+    fontSize: 14,
+    marginBottom: 2,
+  },
   legendOverlay: {
     position: 'absolute',
     bottom: 220,
