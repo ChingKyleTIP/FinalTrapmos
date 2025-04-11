@@ -1,80 +1,100 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Button, Alert, Dimensions } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Button,
+  Alert,
+  Image,
+} from 'react-native';
+import * as Location from 'expo-location';
+import MapView, { Marker, Circle, Callout } from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
-import MapView, { Marker, Circle } from 'react-native-maps';
 import { collection, getDocs } from 'firebase/firestore';
+import { getDownloadURL, getStorage, ref } from 'firebase/storage';
 import { db } from '../config/firebaseConfig';
-import { BarChart } from 'react-native-chart-kit';
 
 export default function MapScreen() {
   const navigation = useNavigation();
   const [locations, setLocations] = useState([]);
+  const [userLocation, setUserLocation] = useState(null);
+  const [region, setRegion] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [region, setRegion] = useState({
-    latitude: 14.1234,
-    longitude: 121.1234,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
-  });
 
-  const [detectionCounts, setDetectionCounts] = useState({
-    detected: 0,
-    notDetected: 0,
-  });
+  const getDistanceKm = (lat1, lon1, lat2, lon2) => {
+    const R = 6371;
+    const dLat = (lat2 - lat1) * (Math.PI / 180);
+    const dLon = (lon2 - lon1) * (Math.PI / 180);
+    const a =
+      Math.sin(dLat / 2) ** 2 +
+      Math.cos(lat1 * (Math.PI / 180)) *
+        Math.cos(lat2 * (Math.PI / 180)) *
+        Math.sin(dLon / 2) ** 2;
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return (R * c).toFixed(2);
+  };
 
   const loadLocations = async () => {
     try {
-      setLoading(true);
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        Alert.alert('Permission Denied', 'Location access is required.');
+        return;
+      }
+
+      const currentLoc = await Location.getCurrentPositionAsync({});
+      const { latitude, longitude } = currentLoc.coords;
+      setUserLocation({ latitude, longitude });
+      setRegion({
+        latitude,
+        longitude,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      });
+
       const uploadsRef = collection(db, 'Uploads');
       const querySnapshot = await getDocs(uploadsRef);
-
+      const storage = getStorage();
       const fetchedLocations = [];
-      let detectedCount = 0;
-      let notDetectedCount = 0;
 
-      querySnapshot.forEach((doc) => {
+      for (const doc of querySnapshot.docs) {
         const data = doc.data();
-        let { latitude, longitude, file, detections } = data;
+        const { latitude, longitude, file, detections, device, timestamp } = data;
+        if (!latitude || !longitude || !file) continue;
 
-        latitude = parseFloat(latitude);
-        longitude = parseFloat(longitude);
-        const isValid = !isNaN(latitude) && !isNaN(longitude);
+        const lat = parseFloat(latitude);
+        const lng = parseFloat(longitude);
 
-        if (isValid) {
-          const isDetected = detections && detections.length > 0;
-
-          if (isDetected) {
-            detectedCount++;
-          } else {
-            notDetectedCount++;
-          }
-
-          fetchedLocations.push({
-            fileName: file,
-            latitude,
-            longitude,
-            isDetected,
-          });
+        let imageUrl = null;
+        try {
+          imageUrl = await getDownloadURL(ref(storage, `TRAPMOS_00000/${file}`));
+        } catch (err) {
+          console.warn(`Failed to load image for ${file}`);
         }
-      });
 
-      setDetectionCounts({
-        detected: detectedCount,
-        notDetected: notDetectedCount,
-      });
-      setLocations(fetchedLocations);
+        const distance = getDistanceKm(
+          latitude,
+          longitude,
+          currentLoc.coords.latitude,
+          currentLoc.coords.longitude
+        );
 
-      if (fetchedLocations.length > 0) {
-        setRegion({
-          latitude: fetchedLocations[0].latitude,
-          longitude: fetchedLocations[0].longitude,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
+        fetchedLocations.push({
+          id: doc.id,
+          latitude: lat,
+          longitude: lng,
+          fileName: file,
+          device: device || 'Unknown Device',
+          timestamp: timestamp?.toDate?.() || null,
+          imageUrl,
+          distance,
         });
       }
-    } catch (error) {
-      console.error('🔥 Error loading locations: ', error);
-      Alert.alert('Error', 'Could not load locations from Firestore.');
+
+      setLocations(fetchedLocations);
+    } catch (err) {
+      console.error('🔥 Error:', err);
+      Alert.alert('Error', 'Could not load data.');
     } finally {
       setLoading(false);
     }
@@ -84,76 +104,54 @@ export default function MapScreen() {
     loadLocations();
   }, []);
 
-  const graphData = {
-    labels: ['Detected', 'Not Detected'],
-    datasets: [
-      {
-        data: [detectionCounts.detected, detectionCounts.notDetected],
-        color: (opacity = 1) => `rgba(255, 0, 0, ${opacity})`,
-        strokeWidth: 2,
-      },
-    ],
+  const getTimeAgo = (timestamp) => {
+    if (!timestamp) return 'Unknown time';
+    const now = new Date();
+    const mins = Math.floor((now - timestamp) / 60000);
+    const hrs = Math.floor(mins / 60);
+    if (mins < 1) return 'Just now';
+    if (mins < 60) return `${mins} min${mins !== 1 ? 's' : ''} ago`;
+    return `${hrs} hour${hrs !== 1 ? 's' : ''} ago`;
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Map Screen</Text>
-      <Text style={styles.text}>User locations will be displayed on the map.</Text>
-
-      {loading ? (
-        <Text style={styles.text}>Loading locations...</Text>
-      ) : (
+      <Text style={styles.title}>🛰️ Map Screen</Text>
+      {region && !loading ? (
         <MapView
           style={styles.map}
           region={region}
-          onRegionChangeComplete={(newRegion) => setRegion(newRegion)}
-          showsUserLocation={true}
-          followUserLocation={true}
-          showsMyLocationButton={true}
+          showsUserLocation
+          showsMyLocationButton
+          onRegionChangeComplete={setRegion}
         >
-          {locations.map((location, index) => (
+          {locations.map((loc, index) => (
             <React.Fragment key={index}>
-              <Marker
-                coordinate={{
-                  latitude: location.latitude,
-                  longitude: location.longitude,
-                }}
-                title={location.fileName}
-              />
+              <Marker coordinate={{ latitude: loc.latitude, longitude: loc.longitude }}>
+                <Callout tooltip>
+                  <View style={styles.calloutBox}>
+                    {loc.imageUrl && (
+                      <Image source={{ uri: loc.imageUrl }} style={styles.image} />
+                    )}
+                    <Text style={styles.calloutTitle}>{loc.device}</Text>
+                    <Text style={styles.calloutText}>🕒 {getTimeAgo(loc.timestamp)}</Text>
+                    <Text style={styles.calloutText}>📄 {loc.fileName}</Text>
+                    <Text style={styles.calloutText}>📏 {loc.distance} km from you</Text>
+                  </View>
+                </Callout>
+              </Marker>
               <Circle
-                center={{
-                  latitude: location.latitude,
-                  longitude: location.longitude,
-                }}
+                center={{ latitude: loc.latitude, longitude: loc.longitude }}
                 radius={250}
-                strokeColor="rgba(255, 0, 0, 0.7)"
-                fillColor="rgba(255, 0, 0, 0.3)"
+                strokeColor="rgba(255,0,0,0.7)"
+                fillColor="rgba(255,0,0,0.2)"
               />
             </React.Fragment>
           ))}
         </MapView>
+      ) : (
+        <Text style={styles.text}>Loading location and pins...</Text>
       )}
-
-      <View style={styles.graphContainer}>
-        <Text style={styles.graphTitle}>Aedes Mosquito Detection</Text>
-        <BarChart
-          style={styles.chart}
-          data={graphData}
-          width={Dimensions.get('window').width - 40}
-          height={220}
-          chartConfig={{
-            backgroundColor: '#0f1924',
-            backgroundGradientFrom: '#0f1924',
-            backgroundGradientTo: '#0f1924',
-            decimalPlaces: 0,
-            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-            style: {
-              borderRadius: 16,
-            },
-          }}
-        />
-      </View>
 
       <View style={styles.buttonContainer}>
         <Button title="Go Back" onPress={() => navigation.goBack()} />
@@ -169,38 +167,46 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    marginBottom: 20,
+    fontSize: 22,
+    color: '#fff',
+    textAlign: 'center',
+    marginBottom: 10,
   },
   text: {
     fontSize: 16,
-    color: '#a5a5a5',
+    color: '#ccc',
     textAlign: 'center',
-    paddingHorizontal: 20,
-    marginBottom: 20,
+    padding: 10,
   },
   map: {
     width: '100%',
-    height: 300,
-    marginBottom: 20,
-  },
-  graphContainer: {
-    marginTop: 20,
-    paddingHorizontal: 10,
-  },
-  graphTitle: {
-    fontSize: 18,
-    color: '#ffffff',
-    marginBottom: 10,
-  },
-  chart: {
-    marginTop: 10,
+    height: 320,
     marginBottom: 20,
   },
   buttonContainer: {
     marginTop: 20,
-    width: '100%',
+  },
+  calloutBox: {
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: 8,
+    width: 220,
+    alignItems: 'center',
+    elevation: 5,
+  },
+  image: {
+    width: 180,
+    height: 100,
+    borderRadius: 6,
+    marginBottom: 6,
+  },
+  calloutTitle: {
+    fontWeight: 'bold',
+    fontSize: 14,
+    marginBottom: 2,
+  },
+  calloutText: {
+    fontSize: 12,
+    color: '#333',
   },
 });

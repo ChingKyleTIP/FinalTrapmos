@@ -1,5 +1,16 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, Button, Alert } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+  Button,
+  Alert,
+  Modal,
+  Image,
+  Pressable,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../config/firebaseConfig';
@@ -12,11 +23,12 @@ export default function AlertsScreen() {
   const [loading, setLoading] = useState(true);
   const previousCount = useRef(0);
 
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+
   const playAlertSound = async () => {
     try {
-      const { sound } = await Audio.Sound.createAsync(
-        require('../assets/alert.mp3')
-      );
+      const { sound } = await Audio.Sound.createAsync(require('../assets/alert.mp3'));
       await sound.playAsync();
     } catch (e) {
       console.error('🔈 Error playing sound:', e);
@@ -33,9 +45,7 @@ export default function AlertsScreen() {
         ...doc.data(),
       }));
 
-      data.sort((a, b) =>
-        b.timestamp?.toDate?.() - a.timestamp?.toDate?.()
-      );
+      data.sort((a, b) => b.timestamp?.toDate?.() - a.timestamp?.toDate?.());
 
       if (previousCount.current && data.length > previousCount.current) {
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
@@ -54,7 +64,7 @@ export default function AlertsScreen() {
 
   useEffect(() => {
     fetchAllAlerts();
-    const interval = setInterval(fetchAllAlerts, 10000); // auto-refresh every 10s
+    const interval = setInterval(fetchAllAlerts, 10000);
     return () => clearInterval(interval);
   }, []);
 
@@ -89,6 +99,18 @@ export default function AlertsScreen() {
     return { text, color };
   };
 
+  const showImageModal = (filename) => {
+    if (!filename) {
+      Alert.alert('No image', 'This alert has no associated file.');
+      return;
+    }
+
+    const imageUrl = `https://firebasestorage.googleapis.com/v0/b/finaltrapmos.firebasestorage.app/o/TRAPMOS_00000%2F${encodeURIComponent(filename)}?alt=media`;
+    console.log('🧪 Fetching image at:', imageUrl);
+    setSelectedImage(imageUrl);
+    setModalVisible(true);
+  };
+
   const renderItem = ({ item }) => {
     const detectionTime = item.timestamp?.toDate?.();
     const now = new Date();
@@ -112,6 +134,7 @@ export default function AlertsScreen() {
             file: item.file,
           })
         }
+        onLongPress={() => showImageModal(item.file)}
       >
         <Text style={styles.location}>{item.device || 'Unknown Device'}</Text>
         <Text style={styles.filename}>📄 {item.file || 'No filename'}</Text>
@@ -126,7 +149,6 @@ export default function AlertsScreen() {
 
   return (
     <View style={styles.container}>
-      {/* ⚠️ Alert Warning Tab */}
       <View style={[styles.warningTab, { backgroundColor: tabColor }]}>
         <Text style={styles.warningText}>⚠ ALERT!</Text>
         <Text style={styles.warningText2}>Aedes Detected! — {timeAgoText}</Text>
@@ -148,6 +170,16 @@ export default function AlertsScreen() {
       )}
 
       <Button title="Go Back" onPress={() => navigation.goBack()} />
+
+      {/* Image Modal */}
+      <Modal visible={modalVisible} transparent animationType="fade">
+        <View style={styles.modalBackground}>
+          <Pressable style={styles.modalContainer} onPress={() => setModalVisible(false)}>
+            <Image source={{ uri: selectedImage }} style={styles.modalImage} />
+            <Text style={styles.modalCloseText}>Tap anywhere to close</Text>
+          </Pressable>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -206,14 +238,35 @@ const styles = StyleSheet.create({
     fontSize: 13,
     marginTop: 4,
   },
+  coords: {
+    color: '#80dfff',
+    fontSize: 13,
+    marginTop: 2,
+  },
   text: {
     color: '#a5a5a5',
     fontSize: 14,
     textAlign: 'center',
   },
-  coords: {
-    color: '#80dfff',
-    fontSize: 13,
-    marginTop: 2,
+  modalBackground: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.9)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalContainer: {
+    padding: 20,
+    alignItems: 'center',
+  },
+  modalImage: {
+    width: 300,
+    height: 300,
+    borderRadius: 10,
+    resizeMode: 'contain',
+  },
+  modalCloseText: {
+    marginTop: 15,
+    color: '#ccc',
+    fontSize: 14,
   },
 });

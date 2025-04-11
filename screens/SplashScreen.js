@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Animated, StyleSheet } from 'react-native';
-import { Asset } from 'expo-asset'; // Import Asset for resolving image paths
-import { Image } from 'react-native';
+import { Asset } from 'expo-asset';
+import { useNavigation } from '@react-navigation/native';
 
 export default function SplashScreen() {
   const [logoOpacity] = useState(new Animated.Value(0));
   const [logoScale] = useState(new Animated.Value(0.8));
   const [mottoOpacity] = useState(new Animated.Value(0));
+  const navigation = useNavigation();
 
   useEffect(() => {
-    // Fade in and scale up the logo
     Animated.timing(logoOpacity, {
       toValue: 1,
       duration: 1500,
@@ -22,7 +22,6 @@ export default function SplashScreen() {
       useNativeDriver: true,
     }).start();
 
-    // Fade in the motto text
     setTimeout(() => {
       Animated.timing(mottoOpacity, {
         toValue: 1,
@@ -30,6 +29,12 @@ export default function SplashScreen() {
         useNativeDriver: true,
       }).start();
     }, 1500);
+
+    const timeout = setTimeout(() => {
+      navigation.replace('Login'); // Navigate after 3s
+    }, 3000);
+
+    return () => clearTimeout(timeout);
   }, []);
 
   const imageUri = Asset.fromModule(require('../images/trapmos.png')).uri;
@@ -37,7 +42,7 @@ export default function SplashScreen() {
   return (
     <View style={styles.container}>
       <Animated.Image
-        source={{ uri: imageUri }} // Ensure the correct URI is used
+        source={{ uri: imageUri }}
         style={[
           styles.logo,
           {
