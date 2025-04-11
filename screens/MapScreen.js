@@ -19,6 +19,7 @@ const getDistanceInKm = (lat1, lon1, lat2, lon2) => {
 export default function MapScreen() {
   const [userLocation, setUserLocation] = useState(null);
   const [locations, setLocations] = useState([]);
+  const [mapReady, setMapReady] = useState(false);
   const mapRef = useRef(null);
 
   useEffect(() => {
@@ -47,17 +48,18 @@ export default function MapScreen() {
       snapshot.forEach((doc) => {
         const data = doc.data();
         let { latitude, longitude, file, detections } = data;
+
         latitude = parseFloat(latitude);
         longitude = parseFloat(longitude);
-        const isDetected = detections && detections.length > 0;
+        if (isNaN(latitude) || isNaN(longitude)) return;
 
+        const isDetected = detections && detections.length > 0;
         const isDuplicate = unique.some(
           (loc) => getDistanceInKm(loc.latitude, loc.longitude, latitude, longitude) <= 0.25
         );
 
-        if (!isNaN(latitude) && !isNaN(longitude) && !isDuplicate) {
+        if (!isDuplicate) {
           unique.push({ latitude, longitude });
-
           fetched.push({
             latitude,
             longitude,
@@ -71,24 +73,25 @@ export default function MapScreen() {
       });
 
       const sorted = fetched.sort((a, b) => a.distance - b.distance);
-      setLocations(sorted);
+      setLocations(sorted.slice(0, 20)); // Limit to 20 for Android stability
     };
 
     if (userLocation) fetchLocations();
   }, [userLocation]);
 
   const focusOnLocation = (loc) => {
-    mapRef.current?.animateToRegion({
-      latitude: loc.latitude,
-      longitude: loc.longitude,
-      latitudeDelta: 0.005,
-      longitudeDelta: 0.005,
-    }, 800);
+    if (mapRef.current) {
+      mapRef.current.animateToRegion({
+        latitude: loc.latitude,
+        longitude: loc.longitude,
+        latitudeDelta: 0.005,
+        longitudeDelta: 0.005,
+      }, 800);
+    }
   };
 
   return (
     <View style={styles.container}>
-      {/* Persistent Location Card */}
       {userLocation && (
         <View style={styles.userLocationCard}>
           <Text style={styles.userLocationText}>📍 Your Location</Text>
@@ -101,38 +104,43 @@ export default function MapScreen() {
         </View>
       )}
 
-      {userLocation && (
+      {userLocation ? (
         <MapView
           ref={mapRef}
           style={styles.map}
           initialRegion={userLocation}
           showsUserLocation={true}
+          onMapReady={() => setMapReady(true)}
         >
-          <Marker
-            coordinate={userLocation}
-            pinColor="blue"
-            title={`You are here\nLongitude: ${userLocation.longitude.toFixed(7)}\nLatitude: ${userLocation.latitude.toFixed(7)}`}
-          />
+          {mapReady && (
+            <Marker
+              coordinate={userLocation}
+              pinColor="blue"
+              title={`You are here\nLongitude: ${userLocation.longitude.toFixed(7)}\nLatitude: ${userLocation.latitude.toFixed(7)}`}
+            />
+          )}
 
-          {locations.map((loc, index) => (
-            <React.Fragment key={index}>
-              <Marker
-                coordinate={{ latitude: loc.latitude, longitude: loc.longitude }}
-                pinColor={loc.isDetected ? 'red' : 'green'}
-                title={`${loc.fileName || 'Unknown'}\nLat: ${loc.latitude.toFixed(5)} | Lng: ${loc.longitude.toFixed(5)}`}
-              />
-              <Circle
-                center={{ latitude: loc.latitude, longitude: loc.longitude }}
-                radius={250}
-                strokeColor={loc.isDetected ? 'rgba(255,0,0,0.6)' : 'rgba(0,255,0,0.6)'}
-                fillColor={loc.isDetected ? 'rgba(255,0,0,0.2)' : 'rgba(0,255,0,0.2)'}
-              />
-            </React.Fragment>
-          ))}
+          {mapReady &&
+            locations.map((loc, index) => (
+              <React.Fragment key={index}>
+                <Marker
+                  coordinate={{ latitude: loc.latitude, longitude: loc.longitude }}
+                  pinColor={loc.isDetected ? 'red' : 'green'}
+                  title={`${loc.fileName || 'Unknown'}\nLat: ${loc.latitude.toFixed(5)} | Lng: ${loc.longitude.toFixed(5)}`}
+                />
+                <Circle
+                  center={{ latitude: loc.latitude, longitude: loc.longitude }}
+                  radius={250}
+                  strokeColor={loc.isDetected ? 'rgba(255,0,0,0.6)' : 'rgba(0,255,0,0.6)'}
+                  fillColor={loc.isDetected ? 'rgba(255,0,0,0.2)' : 'rgba(0,255,0,0.2)'}
+                />
+              </React.Fragment>
+            ))}
         </MapView>
+      ) : (
+        <Text style={styles.loadingText}>Fetching your location...</Text>
       )}
 
-      {/* Legend */}
       <View style={styles.legendOverlay}>
         <View style={styles.legendItem}>
           <View style={[styles.dot, { backgroundColor: 'red' }]} />
@@ -148,7 +156,6 @@ export default function MapScreen() {
         </View>
       </View>
 
-      {/* Location List with kilometers + meters */}
       <ScrollView style={styles.locationList}>
         <Text style={styles.listTitle}>Location List (sorted by proximity)</Text>
         {locations.map((loc, index) => {
@@ -176,6 +183,12 @@ export default function MapScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#0f1924' },
   map: { flex: 1 },
+  loadingText: {
+    color: '#fff',
+    textAlign: 'center',
+    marginTop: 50,
+    fontSize: 16,
+  },
   userLocationCard: {
     position: 'absolute',
     top: 40,

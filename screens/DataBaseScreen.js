@@ -18,22 +18,28 @@ export default function DataBaseScreen() {
   const [loading, setLoading] = useState(true);
   const navigation = useNavigation();
 
-  const loadAllImagesFromFirestore = async () => {
+  const loadLatest10Images = async () => {
     try {
       setLoading(true);
-
       const uploadsRef = collection(db, 'Uploads');
       const querySnapshot = await getDocs(uploadsRef);
 
       const imagePromises = querySnapshot.docs.map(async (doc) => {
         const data = doc.data();
         const fileName = data.file;
-        const { latitude, longitude, device } = data;
+        const { latitude, longitude, device, timestamp } = data;
         const fileRef = ref(storage, `TRAPMOS_00000/${fileName}`);
 
         try {
           const url = await getDownloadURL(fileRef);
-          return { url, fileName, latitude, longitude, device };
+          return {
+            url,
+            fileName,
+            latitude,
+            longitude,
+            device,
+            timestamp: timestamp?.toDate?.() || new Date(0),
+          };
         } catch (error) {
           console.error('🔥 Error getting URL:', fileName, error);
           return null;
@@ -42,7 +48,12 @@ export default function DataBaseScreen() {
 
       const results = await Promise.all(imagePromises);
       const filtered = results.filter((entry) => entry !== null);
-      setImageData(filtered);
+
+      const latest10 = filtered
+        .sort((a, b) => b.timestamp - a.timestamp)
+        .slice(0, 10);
+
+      setImageData(latest10);
     } catch (error) {
       console.error('🔥 Error loading images from Firestore:', error);
       Alert.alert('Error', 'Could not load images from Firestore.');
@@ -52,7 +63,7 @@ export default function DataBaseScreen() {
   };
 
   useEffect(() => {
-    loadAllImagesFromFirestore();
+    loadLatest10Images();
   }, []);
 
   const handlePress = (item) => {
@@ -71,7 +82,7 @@ export default function DataBaseScreen() {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Database Screen</Text>
-      <Text style={styles.text}>Tap an image to view its location</Text>
+      <Text style={styles.text}>Showing latest 10 images. Tap to view location.</Text>
 
       {loading ? (
         <Text style={styles.text}>Loading images...</Text>

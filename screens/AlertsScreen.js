@@ -22,7 +22,6 @@ export default function AlertsScreen() {
   const [alerts, setAlerts] = useState([]);
   const [loading, setLoading] = useState(true);
   const previousCount = useRef(0);
-
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -45,15 +44,17 @@ export default function AlertsScreen() {
         ...doc.data(),
       }));
 
-      data.sort((a, b) => b.timestamp?.toDate?.() - a.timestamp?.toDate?.());
+      const sorted = data
+        .sort((a, b) => b.timestamp?.toDate?.() - a.timestamp?.toDate?.())
+        .slice(0, 10); // ✅ Only show latest 10
 
-      if (previousCount.current && data.length > previousCount.current) {
+      if (previousCount.current && sorted.length > previousCount.current) {
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
         playAlertSound();
       }
 
-      previousCount.current = data.length;
-      setAlerts(data);
+      previousCount.current = sorted.length;
+      setAlerts(sorted);
     } catch (error) {
       console.error('🔥 Error loading alerts:', error);
       Alert.alert('Error', 'Could not load alerts.');
@@ -106,7 +107,6 @@ export default function AlertsScreen() {
     }
 
     const imageUrl = `https://firebasestorage.googleapis.com/v0/b/finaltrapmos.firebasestorage.app/o/TRAPMOS_00000%2F${encodeURIComponent(filename)}?alt=media`;
-    console.log('🧪 Fetching image at:', imageUrl);
     setSelectedImage(imageUrl);
     setModalVisible(true);
   };
