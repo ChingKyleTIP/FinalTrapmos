@@ -35,11 +35,7 @@ const SignUpScreen = () => {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Save user details in Firestore
-      await setDoc(doc(db, "users", user.uid), {
-        name,
-        email,
-      });
+      await setDoc(doc(db, "users", user.uid), { name, email });
 
       Alert.alert("Success", "Sign Up Successful!");
       navigation.replace("Login");
@@ -50,14 +46,12 @@ const SignUpScreen = () => {
 
   return (
     <View style={styles.container}>
-      {/* Logo */}
       <Image
         source={require("../images/trapmosLogin.png")}
         style={styles.logo}
         resizeMode="contain"
       />
 
-      {/* Login/Sign-Up Tabs */}
       <View style={styles.tabs}>
         <TouchableOpacity
           style={styles.tab}
@@ -70,7 +64,6 @@ const SignUpScreen = () => {
         </TouchableOpacity>
       </View>
 
-      {/* Form */}
       <View style={styles.formContainer}>
         <TextInput
           style={styles.input}
@@ -104,7 +97,7 @@ const SignUpScreen = () => {
           placeholderTextColor="#a9a9a9"
         />
         <TouchableOpacity style={styles.signUpButton} onPress={handleSignUp}>
-          <Text style={styles.signUpButtonText}>Sign Up</Text>
+          <Text style={styles.signUpButtonText}>Sign up</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -114,38 +107,38 @@ const SignUpScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#012A4A",
+    backgroundColor: "#002a5c",
     alignItems: "center",
     paddingHorizontal: 20,
     paddingTop: 50,
   },
   logo: {
-    width: 150,
+    width: 400,
     height: 80,
-    marginBottom: 20,
+    marginBottom: 0,
   },
   tabs: {
     flexDirection: "row",
     width: "100%",
-    justifyContent: "center",
     marginBottom: 20,
+    backgroundColor: "#e6e6e6",
+    borderRadius: 5,
   },
   tab: {
     flex: 1,
-    alignItems: "center",
     paddingVertical: 10,
-    borderBottomWidth: 2,
-    borderBottomColor: "transparent",
+    alignItems: "center",
+    borderRadius: 5,
   },
   activeTab: {
-    borderBottomColor: "#ffffff",
+    backgroundColor: "#a6c0e1",
   },
   tabText: {
-    color: "#a9a9a9",
     fontSize: 16,
+    color: "#8a8a8a",
   },
   activeTabText: {
-    color: "#ffffff",
+    color: "#000",
     fontWeight: "bold",
   },
   formContainer: {
@@ -153,27 +146,25 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   input: {
-    backgroundColor: "#013A63",
-    borderRadius: 25,
+    backgroundColor: "#064281",
+    borderRadius: 30,
     height: 50,
     width: "100%",
-    maxWidth: 400,
-    paddingHorizontal: 15,
+    paddingHorizontal: 20,
     color: "#ffffff",
     marginBottom: 15,
   },
   signUpButton: {
-    backgroundColor: "#0284C7",
+    backgroundColor: "#d6d6d6",
     borderRadius: 25,
     height: 50,
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
-    maxWidth: 400,
-    marginBottom: 20,
+    marginBottom: 10,
   },
   signUpButtonText: {
-    color: "#ffffff",
+    color: "#333",
     fontWeight: "bold",
     fontSize: 16,
   },

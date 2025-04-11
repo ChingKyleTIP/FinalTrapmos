@@ -34,14 +34,12 @@ const LoginScreen = () => {
 
   return (
     <View style={styles.container}>
-      {/* Logo */}
       <Image
         source={require("../images/trapmosLogin.png")}
         style={styles.logo}
         resizeMode="contain"
       />
 
-      {/* Login/Sign-Up Tabs */}
       <View style={styles.tabs}>
         <TouchableOpacity style={[styles.tab, styles.activeTab]}>
           <Text style={[styles.tabText, styles.activeTabText]}>Login</Text>
@@ -54,7 +52,6 @@ const LoginScreen = () => {
         </TouchableOpacity>
       </View>
 
-      {/* Form */}
       <View style={styles.formContainer}>
         <TextInput
           style={styles.input}
@@ -62,7 +59,7 @@ const LoginScreen = () => {
           value={email}
           onChangeText={setEmail}
           keyboardType="email-address"
-          placeholderTextColor="#a9a9a9"
+          placeholderTextColor="#A0B2A6"
         />
         <TextInput
           style={styles.input}
@@ -70,11 +67,17 @@ const LoginScreen = () => {
           value={password}
           onChangeText={setPassword}
           secureTextEntry
-          placeholderTextColor="#a9a9a9"
+          placeholderTextColor="#A0B2A6"
         />
         <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
           <Text style={styles.loginButtonText}>Login</Text>
         </TouchableOpacity>
+        <Text style={styles.bottomText}>
+          Don't have account?{" "}
+          <Text style={styles.linkText} onPress={() => navigation.navigate("SignUp")}>
+            Sign up
+          </Text>
+        </Text>
       </View>
     </View>
   );
@@ -83,38 +86,38 @@ const LoginScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#012A4A",
+    backgroundColor: "#002915",
     alignItems: "center",
     paddingHorizontal: 20,
     paddingTop: 50,
   },
   logo: {
-    width: 150,
+    width: 400,
     height: 80,
-    marginBottom: 20,
+    marginBottom: 0,
   },
   tabs: {
     flexDirection: "row",
     width: "100%",
-    justifyContent: "center",
     marginBottom: 20,
+    backgroundColor: "#f2f2f2",
+    borderRadius: 5,
   },
   tab: {
     flex: 1,
-    alignItems: "center",
     paddingVertical: 10,
-    borderBottomWidth: 2,
-    borderBottomColor: "transparent",
+    alignItems: "center",
+    borderRadius: 5,
   },
   activeTab: {
-    borderBottomColor: "#ffffff",
+    backgroundColor: "#B8C7B0",
   },
   tabText: {
-    color: "#a9a9a9",
     fontSize: 16,
+    color: "#8a8a8a",
   },
   activeTabText: {
-    color: "#ffffff",
+    color: "#000",
     fontWeight: "bold",
   },
   formContainer: {
@@ -122,29 +125,33 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   input: {
-    backgroundColor: "#013A63",
-    borderRadius: 25,
+    backgroundColor: "#03361e",
+    borderRadius: 30,
     height: 50,
     width: "100%",
-    maxWidth: 400,
-    paddingHorizontal: 15,
-    color: "#ffffff",
+    paddingHorizontal: 20,
+    color: "#fff",
     marginBottom: 15,
   },
   loginButton: {
-    backgroundColor: "#0284C7",
+    backgroundColor: "#d6d6d6",
     borderRadius: 25,
     height: 50,
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
-    maxWidth: 400,
-    marginBottom: 20,
+    marginBottom: 10,
   },
   loginButtonText: {
-    color: "#ffffff",
+    color: "#333",
     fontWeight: "bold",
     fontSize: 16,
+  },
+  bottomText: {
+    color: "#ccc",
+  },
+  linkText: {
+    color: "#6bc9e0",
   },
 });
 
