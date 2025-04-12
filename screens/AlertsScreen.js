@@ -46,7 +46,7 @@ export default function AlertsScreen() {
 
       const sorted = data
         .sort((a, b) => b.timestamp?.toDate?.() - a.timestamp?.toDate?.())
-        .slice(0, 10); // ✅ Only show latest 10
+        .slice(0, 10);
 
       if (previousCount.current && sorted.length > previousCount.current) {
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
@@ -107,6 +107,7 @@ export default function AlertsScreen() {
     }
 
     const imageUrl = `https://firebasestorage.googleapis.com/v0/b/finaltrapmos.firebasestorage.app/o/TRAPMOS_00000%2F${encodeURIComponent(filename)}?alt=media`;
+    console.log('📸 Attempting to load image:', imageUrl);
     setSelectedImage(imageUrl);
     setModalVisible(true);
   };
@@ -175,7 +176,15 @@ export default function AlertsScreen() {
       <Modal visible={modalVisible} transparent animationType="fade">
         <View style={styles.modalBackground}>
           <Pressable style={styles.modalContainer} onPress={() => setModalVisible(false)}>
-            <Image source={{ uri: selectedImage }} style={styles.modalImage} />
+            {selectedImage && (
+              <Image
+                source={{ uri: selectedImage }}
+                style={styles.modalImage}
+                onError={(e) =>
+                  console.log('❌ Failed to load image:', e.nativeEvent?.error)
+                }
+              />
+            )}
             <Text style={styles.modalCloseText}>Tap anywhere to close</Text>
           </Pressable>
         </View>

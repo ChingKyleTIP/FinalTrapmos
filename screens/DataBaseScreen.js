@@ -41,14 +41,14 @@ export default function DataBaseScreen() {
             timestamp: timestamp?.toDate?.() || new Date(0),
           };
         } catch (error) {
-          console.error('🔥 Error getting URL:', fileName, error);
+          // 🔕 Don't throw alert, just log quietly
+          console.log(`⚠️ Skipped missing image: ${fileName}`);
           return null;
         }
       });
 
       const results = await Promise.all(imagePromises);
       const filtered = results.filter((entry) => entry !== null);
-
       const latest10 = filtered
         .sort((a, b) => b.timestamp - a.timestamp)
         .slice(0, 10);

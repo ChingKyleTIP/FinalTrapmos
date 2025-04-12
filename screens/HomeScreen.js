@@ -57,7 +57,6 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Dashboard</Text>
-        <Feather name="more-vertical" size={24} color="#fff" />
       </View>
 
       <View style={styles.grid}>
@@ -133,7 +132,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    paddingTop: 60,
+    paddingTop: 30,
     backgroundColor: '#0f1924',
   },
   header: {
@@ -143,7 +142,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   title: {
-    fontSize: 28,
+    fontSize: 35,
     fontWeight: 'bold',
     color: '#ffffff',
   },
@@ -175,7 +174,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   recentTitle: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#ffffff',
   },

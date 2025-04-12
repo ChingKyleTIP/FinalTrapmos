@@ -1,11 +1,11 @@
 {
   "expo": {
     "name": "Trapmos",
-    "slug": "your-app-slug",
-    "platforms": ["ios", "android"],
+    "slug": "your-app-slug",                     // ✅ Must match EAS project name
+    "platforms": ["android"],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./images/1.png",
     "splash": {
       "image": "./assets/splash.png",
       "backgroundColor": "#ffffff"
@@ -16,25 +16,19 @@
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
-    "ios": {
-      "bundleIdentifier": "com.yourname.yourapp",
-      "buildNumber": "1.0.0",
-      "infoPlist": {
-        "NSPhotoLibraryUsageDescription": "This app needs access to your photo library",
-        "NSCameraUsageDescription": "This app needs access to your camera"
-      }
-    },
     "android": {
       "package": "com.yourname.yourapp",
       "versionCode": 1,
       "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
         "CAMERA",
         "READ_EXTERNAL_STORAGE",
         "WRITE_EXTERNAL_STORAGE"
       ],
       "config": {
         "googleMaps": {
-          "apiKey": "AIzaSyAH43IdapLXl7g5MLxHTvgdQ2SWiD4Ia_8"
+          "apiKey": "AIzaSyD7V-8rb-g_OmFfjMOj6wvI1rKGi4QmDOc"
         }
       }
     },
