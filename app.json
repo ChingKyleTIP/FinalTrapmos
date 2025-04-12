@@ -2,10 +2,7 @@
   "expo": {
     "name": "Trapmos",
     "slug": "your-app-slug",
-    "platforms": [
-      "ios",
-      "android"
-    ],
+    "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,9 +15,7 @@
       "checkAutomatically": "ON_LOAD",
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "bundleIdentifier": "com.yourname.yourapp",
       "buildNumber": "1.0.0",
@@ -36,7 +31,12 @@
         "CAMERA",
         "READ_EXTERNAL_STORAGE",
         "WRITE_EXTERNAL_STORAGE"
-      ]
+      ],
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyAH43IdapLXl7g5MLxHTvgdQ2SWiD4Ia_8"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
