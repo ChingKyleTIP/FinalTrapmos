@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Trapmos",
-    "slug": "your-app-slug",                     // ✅ Must match EAS project name
+    "slug": "your-app-slug",                   
     "platforms": ["android"],
     "version": "1.0.0",
     "orientation": "portrait",
