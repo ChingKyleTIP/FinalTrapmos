@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "Trapmos",
+    "slug": "your-app-slug",                   
+    "platforms": ["android"],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./images/1.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "enabled": false,
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "android": {
+      "package": "com.yourname.yourapp",
+      "versionCode": 1,
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ],
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyD7V-8rb-g_OmFfjMOj6wvI1rKGi4QmDOc"
+        }
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "newArchEnabled": true,
+    "extra": {
+      "eas": {
+        "projectId": "ca95e0f6-b6da-4eac-8b3f-4bbe6d5fdae8"
+      }
+    }
+  }
+}

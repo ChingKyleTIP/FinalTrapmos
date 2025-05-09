@@ -1,0 +1,800 @@
+[debug] [2025-05-09T01:34:27.324Z] ----------------------------------------------------------------------
+[debug] [2025-05-09T01:34:27.326Z] Command:       C:\nvm4w\nodejs\node.exe C:\Users\Ching\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2025-05-09T01:34:27.327Z] CLI Version:   13.27.0
+[debug] [2025-05-09T01:34:27.327Z] Platform:      win32
+[debug] [2025-05-09T01:34:27.327Z] Node Version:  v20.11.0
+[debug] [2025-05-09T01:34:27.327Z] Time:          Fri May 09 2025 09:34:27 GMT+0800 (Philippine Standard Time)
+[debug] [2025-05-09T01:34:27.327Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-05-09T01:34:27.392Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-05-09T01:34:27.392Z] > authorizing via signed-in user (qkjpching@tip.edu.ph)
+[debug] [2025-05-09T01:34:27.392Z] [iam] checking project finaltrapmos for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2025-05-09T01:34:27.393Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:34:27.393Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:34:27.394Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos:testIamPermissions [none]
+[debug] [2025-05-09T01:34:27.394Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos:testIamPermissions x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:34:27.394Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2025-05-09T01:34:28.327Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos:testIamPermissions 200
+[debug] [2025-05-09T01:34:28.327Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2025-05-09T01:34:28.327Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:34:28.327Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:34:28.327Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/finaltrapmos/serviceAccounts/finaltrapmos@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2025-05-09T01:34:28.327Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/finaltrapmos/serviceAccounts/finaltrapmos@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2025-05-09T01:34:29.530Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/finaltrapmos/serviceAccounts/finaltrapmos@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2025-05-09T01:34:29.531Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/finaltrapmos/serviceAccounts/finaltrapmos@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'finaltrapmos'...
+[info] 
+[info] i  deploying functions 
+[info] +  functions: Finished running predeploy script. 
+[debug] [2025-05-09T01:34:29.534Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:34:29.534Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:34:29.534Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos [none]
+[debug] [2025-05-09T01:34:29.762Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos 200
+[debug] [2025-05-09T01:34:29.763Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos {"projectNumber":"963883946464","projectId":"finaltrapmos","lifecycleState":"ACTIVE","name":"FinalTrapmos","labels":{"firebase":"enabled"},"createTime":"2024-11-24T04:55:16.403026Z","parent":{"type":"organization","id":"1009258765871"}}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[debug] [2025-05-09T01:34:29.764Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:34:29.764Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:34:29.764Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:34:29.764Z] Checked if tokens are valid: true, expires at: 1746757320227
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2025-05-09T01:34:29.765Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:34:29.765Z] Checked if tokens are valid: true, expires at: 1746757320227
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2025-05-09T01:34:29.765Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:34:29.765Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:34:29.765Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-05-09T01:34:29.765Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:34:29.766Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/runtimeconfig.googleapis.com [none]
+[debug] [2025-05-09T01:34:29.766Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:34:29.767Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/cloudbuild.googleapis.com [none]
+[debug] [2025-05-09T01:34:29.767Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/cloudbuild.googleapis.com x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:34:29.768Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/artifactregistry.googleapis.com [none]
+[debug] [2025-05-09T01:34:29.768Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/artifactregistry.googleapis.com x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:34:30.997Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/cloudfunctions.googleapis.com 200
+[debug] [2025-05-09T01:34:30.997Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/cloudfunctions.googleapis.com [omitted]
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2025-05-09T01:34:31.041Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/cloudbuild.googleapis.com 200
+[debug] [2025-05-09T01:34:31.041Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/cloudbuild.googleapis.com [omitted]
+[info] +  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2025-05-09T01:34:31.042Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/runtimeconfig.googleapis.com 200
+[debug] [2025-05-09T01:34:31.042Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2025-05-09T01:34:31.048Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/artifactregistry.googleapis.com 200
+[debug] [2025-05-09T01:34:31.048Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/artifactregistry.googleapis.com [omitted]
+[info] +  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2025-05-09T01:34:31.049Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:34:31.049Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:34:31.049Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/finaltrapmos/adminSdkConfig [none]
+[debug] [2025-05-09T01:34:31.963Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/finaltrapmos/adminSdkConfig 200
+[debug] [2025-05-09T01:34:31.963Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/finaltrapmos/adminSdkConfig {"projectId":"finaltrapmos","storageBucket":"finaltrapmos.firebasestorage.app"}
+[debug] [2025-05-09T01:34:31.963Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:34:31.963Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:34:31.963Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/finaltrapmos/configs [none]
+[debug] [2025-05-09T01:34:32.374Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/finaltrapmos/configs 200
+[debug] [2025-05-09T01:34:32.374Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/finaltrapmos/configs {}
+[debug] [2025-05-09T01:34:32.376Z] Validating nodejs source
+[warn] !  functions: Runtime Node.js 18 was deprecated on 2025-04-30 and will be decommissioned on 2025-10-31, after which you will not be able to deploy without upgrading. Consider upgrading now to avoid disruption. See https://cloud.google.com/functions/docs/runtime-support for full details on the lifecycle policy 
+[debug] [2025-05-09T01:34:32.986Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^13.3.0",
+    "firebase-functions": "^6.3.2",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.15.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
+[debug] [2025-05-09T01:34:32.987Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2025-05-09T01:34:32.988Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-05-09T01:34:32.995Z] Found firebase-functions binary at 'C:\Users\Ching\Documents\New-Trapmos\FinalTrapmos-master (1)\Finaltrapmos-Master\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8959
+
+[debug] [2025-05-09T01:34:34.891Z] Got response from /__/functions.yaml {"endpoints":{"sendTrapmosNotification":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"eventTrigger":{"eventType":"google.cloud.firestore.document.v1.created","eventFilters":{"database":"(default)","namespace":"(default)"},"eventFilterPathPatterns":{"document":"Uploads/{docId}"},"retry":false},"entryPoint":"sendTrapmosNotification"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[info] i  extensions: ensuring required API firebaseextensions.googleapis.com is enabled... 
+[debug] [2025-05-09T01:34:39.924Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:34:39.924Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:34:39.924Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/firebaseextensions.googleapis.com [none]
+[debug] [2025-05-09T01:34:39.924Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/firebaseextensions.googleapis.com x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:34:41.088Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/firebaseextensions.googleapis.com 200
+[debug] [2025-05-09T01:34:41.088Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/firebaseextensions.googleapis.com [omitted]
+[warn] !  extensions: missing required API firebaseextensions.googleapis.com. Enabling now... 
+[debug] [2025-05-09T01:34:41.089Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:34:41.089Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:34:41.089Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/firebaseextensions.googleapis.com:enable [none]
+[debug] [2025-05-09T01:34:41.089Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/firebaseextensions.googleapis.com:enable x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:34:41.519Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/firebaseextensions.googleapis.com:enable 200
+[debug] [2025-05-09T01:34:41.519Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/firebaseextensions.googleapis.com:enable [omitted]
+[debug] [2025-05-09T01:34:51.532Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:34:51.533Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:34:51.533Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/firebaseextensions.googleapis.com [none]
+[debug] [2025-05-09T01:34:51.533Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/firebaseextensions.googleapis.com x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:34:52.892Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/firebaseextensions.googleapis.com 200
+[debug] [2025-05-09T01:34:52.892Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/firebaseextensions.googleapis.com [omitted]
+[info] +  extensions: required API firebaseextensions.googleapis.com is enabled 
+[debug] [2025-05-09T01:34:52.894Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-05-09T01:34:52.894Z] > authorizing via signed-in user (qkjpching@tip.edu.ph)
+[debug] [2025-05-09T01:34:52.894Z] [iam] checking project finaltrapmos for permissions ["firebase.projects.get","firebaseextensions.instances.list"]
+[debug] [2025-05-09T01:34:52.895Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:34:52.895Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:34:52.895Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos:testIamPermissions [none]
+[debug] [2025-05-09T01:34:52.895Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos:testIamPermissions x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:34:52.895Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
+[debug] [2025-05-09T01:34:53.780Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos:testIamPermissions 200
+[debug] [2025-05-09T01:34:53.780Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
+[debug] [2025-05-09T01:34:53.781Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:34:53.781Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:34:53.781Z] >>> [apiv2][query] GET https://firebaseextensions.googleapis.com/v1beta/projects/finaltrapmos/instances pageSize=100&pageToken=
+[debug] [2025-05-09T01:34:56.193Z] <<< [apiv2][status] GET https://firebaseextensions.googleapis.com/v1beta/projects/finaltrapmos/instances 200
+[debug] [2025-05-09T01:34:56.193Z] <<< [apiv2][body] GET https://firebaseextensions.googleapis.com/v1beta/projects/finaltrapmos/instances {}
+[info] i  functions: preparing functions directory for uploading... 
+[info] i  functions: packaged C:\Users\Ching\Documents\New-Trapmos\FinalTrapmos-master (1)\Finaltrapmos-Master\functions (8.07 MB) for uploading 
+[debug] [2025-05-09T01:35:07.891Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:07.892Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:07.892Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/projects/finaltrapmos/locations/-/functions [none]
+[debug] [2025-05-09T01:35:08.768Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/projects/finaltrapmos/locations/-/functions 200
+[debug] [2025-05-09T01:35:08.768Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/projects/finaltrapmos/locations/-/functions {}
+[debug] [2025-05-09T01:35:08.768Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:08.768Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:08.769Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/-/functions filter=environment%3D%22GEN_2%22
+[debug] [2025-05-09T01:35:10.565Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/-/functions 200
+[debug] [2025-05-09T01:35:10.565Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/-/functions {}
+[debug] [2025-05-09T01:35:10.566Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:10.566Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:10.566Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/finaltrapmos/databases/(default) [none]
+[debug] [2025-05-09T01:35:11.760Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/finaltrapmos/databases/(default) 200
+[debug] [2025-05-09T01:35:11.761Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/finaltrapmos/databases/(default) {"name":"projects/finaltrapmos/databases/(default)","uid":"dd896729-71d6-4fbe-84ab-dba8d89fe71f","createTime":"2024-11-24T05:46:27.939363Z","updateTime":"2024-11-24T05:46:27.939363Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2025-05-09T00:35:14.143269Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"etag":"IPyLzdKflY0DMLyn6IOoqYwD"}
+[info] i  functions: ensuring required API run.googleapis.com is enabled... 
+[debug] [2025-05-09T01:35:11.762Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:11.762Z] Checked if tokens are valid: true, expires at: 1746757320227
+[info] i  functions: ensuring required API eventarc.googleapis.com is enabled... 
+[debug] [2025-05-09T01:35:11.762Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:11.762Z] Checked if tokens are valid: true, expires at: 1746757320227
+[info] i  functions: ensuring required API pubsub.googleapis.com is enabled... 
+[debug] [2025-05-09T01:35:11.763Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:11.763Z] Checked if tokens are valid: true, expires at: 1746757320227
+[info] i  functions: ensuring required API storage.googleapis.com is enabled... 
+[debug] [2025-05-09T01:35:11.763Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:11.763Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:11.763Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/run.googleapis.com [none]
+[debug] [2025-05-09T01:35:11.763Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/run.googleapis.com x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:35:11.764Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/eventarc.googleapis.com [none]
+[debug] [2025-05-09T01:35:11.764Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/eventarc.googleapis.com x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:35:11.765Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/pubsub.googleapis.com [none]
+[debug] [2025-05-09T01:35:11.765Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/pubsub.googleapis.com x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:35:11.766Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/storage.googleapis.com [none]
+[debug] [2025-05-09T01:35:11.766Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/storage.googleapis.com x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:35:12.915Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/run.googleapis.com 200
+[debug] [2025-05-09T01:35:12.915Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/run.googleapis.com [omitted]
+[warn] !  functions: missing required API run.googleapis.com. Enabling now... 
+[debug] [2025-05-09T01:35:12.915Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:12.916Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:12.916Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/run.googleapis.com:enable [none]
+[debug] [2025-05-09T01:35:12.916Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/run.googleapis.com:enable x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:35:12.916Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/storage.googleapis.com 200
+[debug] [2025-05-09T01:35:12.916Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/storage.googleapis.com [omitted]
+[info] +  functions: required API storage.googleapis.com is enabled 
+[debug] [2025-05-09T01:35:12.927Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/pubsub.googleapis.com 200
+[debug] [2025-05-09T01:35:12.927Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/pubsub.googleapis.com [omitted]
+[info] +  functions: required API pubsub.googleapis.com is enabled 
+[debug] [2025-05-09T01:35:12.955Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/eventarc.googleapis.com 200
+[debug] [2025-05-09T01:35:12.955Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/eventarc.googleapis.com [omitted]
+[warn] !  functions: missing required API eventarc.googleapis.com. Enabling now... 
+[debug] [2025-05-09T01:35:12.955Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:12.955Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:12.955Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/eventarc.googleapis.com:enable [none]
+[debug] [2025-05-09T01:35:12.956Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/eventarc.googleapis.com:enable x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:35:13.377Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/eventarc.googleapis.com:enable 200
+[debug] [2025-05-09T01:35:13.377Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/eventarc.googleapis.com:enable [omitted]
+[debug] [2025-05-09T01:35:13.633Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/run.googleapis.com:enable 200
+[debug] [2025-05-09T01:35:13.633Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/run.googleapis.com:enable [omitted]
+[debug] [2025-05-09T01:35:23.391Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:23.391Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:23.391Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/eventarc.googleapis.com [none]
+[debug] [2025-05-09T01:35:23.391Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/eventarc.googleapis.com x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:35:23.638Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:23.638Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:23.638Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/run.googleapis.com [none]
+[debug] [2025-05-09T01:35:23.638Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/run.googleapis.com x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:35:23.948Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/run.googleapis.com 200
+[debug] [2025-05-09T01:35:23.948Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/run.googleapis.com [omitted]
+[info] +  functions: required API run.googleapis.com is enabled 
+[debug] [2025-05-09T01:35:24.553Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/eventarc.googleapis.com 200
+[debug] [2025-05-09T01:35:24.554Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/eventarc.googleapis.com [omitted]
+[info] +  functions: required API eventarc.googleapis.com is enabled 
+[info] i  functions: generating the service identity for pubsub.googleapis.com... 
+[debug] [2025-05-09T01:35:24.555Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:24.555Z] Checked if tokens are valid: true, expires at: 1746757320227
+[info] i  functions: generating the service identity for eventarc.googleapis.com... 
+[debug] [2025-05-09T01:35:24.555Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:24.555Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:24.555Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/963883946464/services/pubsub.googleapis.com:generateServiceIdentity [none]
+[debug] [2025-05-09T01:35:24.555Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/963883946464/services/eventarc.googleapis.com:generateServiceIdentity [none]
+[debug] [2025-05-09T01:35:25.020Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/963883946464/services/eventarc.googleapis.com:generateServiceIdentity 200
+[debug] [2025-05-09T01:35:25.020Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/963883946464/services/eventarc.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-963883946464@gcp-sa-eventarc.iam.gserviceaccount.com","uniqueId":"110736197866576782417"}}
+[debug] [2025-05-09T01:35:25.676Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/963883946464/services/pubsub.googleapis.com:generateServiceIdentity 200
+[debug] [2025-05-09T01:35:25.676Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/963883946464/services/pubsub.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-963883946464@gcp-sa-pubsub.iam.gserviceaccount.com","uniqueId":"106137512732566936009"}}
+[debug] [2025-05-09T01:35:25.678Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:25.678Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:25.678Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/963883946464:getIamPolicy [none]
+[debug] [2025-05-09T01:35:26.728Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/963883946464:getIamPolicy 200
+[debug] [2025-05-09T01:35:26.728Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/963883946464:getIamPolicy {"version":1,"etag":"BwY0qfqd26w=","bindings":[{"role":"roles/cloudbuild.builds.builder","members":["serviceAccount:963883946464@cloudbuild.gserviceaccount.com"]},{"role":"roles/cloudbuild.serviceAgent","members":["serviceAccount:service-963883946464@gcp-sa-cloudbuild.iam.gserviceaccount.com"]},{"role":"roles/cloudfunctions.developer","members":["serviceAccount:github-action-893323434@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/cloudfunctions.serviceAgent","members":["serviceAccount:service-963883946464@gcf-admin-robot.iam.gserviceaccount.com"]},{"role":"roles/containerregistry.ServiceAgent","members":["serviceAccount:service-963883946464@containerregistry.iam.gserviceaccount.com"]},{"role":"roles/editor","members":["serviceAccount:963883946464-compute@developer.gserviceaccount.com","serviceAccount:963883946464@cloudservices.gserviceaccount.com","serviceAccount:finaltrapmos@appspot.gserviceaccount.com"]},{"role":"roles/firebase.managementServiceAgent","members":["serviceAccount:firebase-service-account@firebase-sa-management.iam.gserviceaccount.com","serviceAccount:service-963883946464@gcp-sa-firebase.iam.gserviceaccount.com"]},{"role":"roles/firebase.sdkAdminServiceAgent","members":["serviceAccount:firebase-adminsdk-n75qh@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/firebaseauth.admin","members":["serviceAccount:firebase-adminsdk-n75qh@finaltrapmos.iam.gserviceaccount.com","serviceAccount:github-action-893323434@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/firebasehosting.admin","members":["serviceAccount:github-action-893323434@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/firebasemods.serviceAgent","members":["serviceAccount:service-963883946464@gcp-sa-firebasemods.iam.gserviceaccount.com"]},{"role":"roles/firebaserules.system","members":["serviceAccount:service-963883946464@firebase-rules.iam.gserviceaccount.com"]},{"role":"roles/firebasestorage.serviceAgent","members":["serviceAccount:service-963883946464@gcp-sa-firebasestorage.iam.gserviceaccount.com"]},{"role":"roles/firestore.serviceAgent","members":["serviceAccount:service-963883946464@gcp-sa-firestore.iam.gserviceaccount.com"]},{"role":"roles/iam.serviceAccountTokenCreator","members":["serviceAccount:firebase-adminsdk-n75qh@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/owner","members":["user:qkjpching@tip.edu.ph"]},{"role":"roles/run.serviceAgent","members":["serviceAccount:service-963883946464@serverless-robot-prod.iam.gserviceaccount.com"]},{"role":"roles/run.viewer","members":["serviceAccount:github-action-893323434@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/serviceusage.apiKeysViewer","members":["serviceAccount:github-action-893323434@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/serviceusage.serviceUsageConsumer","members":["serviceAccount:github-action-893323434@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/storage.admin","members":["serviceAccount:firebase-adminsdk-n75qh@finaltrapmos.iam.gserviceaccount.com"]}]}
+[debug] [2025-05-09T01:35:26.728Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:26.728Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:26.728Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/963883946464:setIamPolicy [none]
+[debug] [2025-05-09T01:35:26.728Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/963883946464:setIamPolicy {"policy":{"version":1,"etag":"BwY0qfqd26w=","bindings":[{"role":"roles/cloudbuild.builds.builder","members":["serviceAccount:963883946464@cloudbuild.gserviceaccount.com"]},{"role":"roles/cloudbuild.serviceAgent","members":["serviceAccount:service-963883946464@gcp-sa-cloudbuild.iam.gserviceaccount.com"]},{"role":"roles/cloudfunctions.developer","members":["serviceAccount:github-action-893323434@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/cloudfunctions.serviceAgent","members":["serviceAccount:service-963883946464@gcf-admin-robot.iam.gserviceaccount.com"]},{"role":"roles/containerregistry.ServiceAgent","members":["serviceAccount:service-963883946464@containerregistry.iam.gserviceaccount.com"]},{"role":"roles/editor","members":["serviceAccount:963883946464-compute@developer.gserviceaccount.com","serviceAccount:963883946464@cloudservices.gserviceaccount.com","serviceAccount:finaltrapmos@appspot.gserviceaccount.com"]},{"role":"roles/firebase.managementServiceAgent","members":["serviceAccount:firebase-service-account@firebase-sa-management.iam.gserviceaccount.com","serviceAccount:service-963883946464@gcp-sa-firebase.iam.gserviceaccount.com"]},{"role":"roles/firebase.sdkAdminServiceAgent","members":["serviceAccount:firebase-adminsdk-n75qh@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/firebaseauth.admin","members":["serviceAccount:firebase-adminsdk-n75qh@finaltrapmos.iam.gserviceaccount.com","serviceAccount:github-action-893323434@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/firebasehosting.admin","members":["serviceAccount:github-action-893323434@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/firebasemods.serviceAgent","members":["serviceAccount:service-963883946464@gcp-sa-firebasemods.iam.gserviceaccount.com"]},{"role":"roles/firebaserules.system","members":["serviceAccount:service-963883946464@firebase-rules.iam.gserviceaccount.com"]},{"role":"roles/firebasestorage.serviceAgent","members":["serviceAccount:service-963883946464@gcp-sa-firebasestorage.iam.gserviceaccount.com"]},{"role":"roles/firestore.serviceAgent","members":["serviceAccount:service-963883946464@gcp-sa-firestore.iam.gserviceaccount.com"]},{"role":"roles/iam.serviceAccountTokenCreator","members":["serviceAccount:firebase-adminsdk-n75qh@finaltrapmos.iam.gserviceaccount.com","serviceAccount:service-963883946464@gcp-sa-pubsub.iam.gserviceaccount.com"]},{"role":"roles/owner","members":["user:qkjpching@tip.edu.ph"]},{"role":"roles/run.serviceAgent","members":["serviceAccount:service-963883946464@serverless-robot-prod.iam.gserviceaccount.com"]},{"role":"roles/run.viewer","members":["serviceAccount:github-action-893323434@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/serviceusage.apiKeysViewer","members":["serviceAccount:github-action-893323434@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/serviceusage.serviceUsageConsumer","members":["serviceAccount:github-action-893323434@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/storage.admin","members":["serviceAccount:firebase-adminsdk-n75qh@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/run.invoker","members":["serviceAccount:963883946464-compute@developer.gserviceaccount.com"]},{"role":"roles/eventarc.eventReceiver","members":["serviceAccount:963883946464-compute@developer.gserviceaccount.com"]}]},"updateMask":"bindings"}
+[debug] [2025-05-09T01:35:27.535Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/963883946464:setIamPolicy 200
+[debug] [2025-05-09T01:35:27.536Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/963883946464:setIamPolicy {"version":1,"etag":"BwY0qftDzqU=","bindings":[{"role":"roles/cloudbuild.builds.builder","members":["serviceAccount:963883946464@cloudbuild.gserviceaccount.com"]},{"role":"roles/cloudbuild.serviceAgent","members":["serviceAccount:service-963883946464@gcp-sa-cloudbuild.iam.gserviceaccount.com"]},{"role":"roles/cloudfunctions.developer","members":["serviceAccount:github-action-893323434@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/cloudfunctions.serviceAgent","members":["serviceAccount:service-963883946464@gcf-admin-robot.iam.gserviceaccount.com"]},{"role":"roles/containerregistry.ServiceAgent","members":["serviceAccount:service-963883946464@containerregistry.iam.gserviceaccount.com"]},{"role":"roles/editor","members":["serviceAccount:963883946464-compute@developer.gserviceaccount.com","serviceAccount:963883946464@cloudservices.gserviceaccount.com","serviceAccount:finaltrapmos@appspot.gserviceaccount.com"]},{"role":"roles/eventarc.eventReceiver","members":["serviceAccount:963883946464-compute@developer.gserviceaccount.com"]},{"role":"roles/firebase.managementServiceAgent","members":["serviceAccount:firebase-service-account@firebase-sa-management.iam.gserviceaccount.com","serviceAccount:service-963883946464@gcp-sa-firebase.iam.gserviceaccount.com"]},{"role":"roles/firebase.sdkAdminServiceAgent","members":["serviceAccount:firebase-adminsdk-n75qh@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/firebaseauth.admin","members":["serviceAccount:firebase-adminsdk-n75qh@finaltrapmos.iam.gserviceaccount.com","serviceAccount:github-action-893323434@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/firebasehosting.admin","members":["serviceAccount:github-action-893323434@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/firebasemods.serviceAgent","members":["serviceAccount:service-963883946464@gcp-sa-firebasemods.iam.gserviceaccount.com"]},{"role":"roles/firebaserules.system","members":["serviceAccount:service-963883946464@firebase-rules.iam.gserviceaccount.com"]},{"role":"roles/firebasestorage.serviceAgent","members":["serviceAccount:service-963883946464@gcp-sa-firebasestorage.iam.gserviceaccount.com"]},{"role":"roles/firestore.serviceAgent","members":["serviceAccount:service-963883946464@gcp-sa-firestore.iam.gserviceaccount.com"]},{"role":"roles/iam.serviceAccountTokenCreator","members":["serviceAccount:firebase-adminsdk-n75qh@finaltrapmos.iam.gserviceaccount.com","serviceAccount:service-963883946464@gcp-sa-pubsub.iam.gserviceaccount.com"]},{"role":"roles/owner","members":["user:qkjpching@tip.edu.ph"]},{"role":"roles/run.invoker","members":["serviceAccount:963883946464-compute@developer.gserviceaccount.com"]},{"role":"roles/run.serviceAgent","members":["serviceAccount:service-963883946464@serverless-robot-prod.iam.gserviceaccount.com"]},{"role":"roles/run.viewer","members":["serviceAccount:github-action-893323434@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/serviceusage.apiKeysViewer","members":["serviceAccount:github-action-893323434@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/serviceusage.serviceUsageConsumer","members":["serviceAccount:github-action-893323434@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/storage.admin","members":["serviceAccount:firebase-adminsdk-n75qh@finaltrapmos.iam.gserviceaccount.com"]}]}
+[debug] [2025-05-09T01:35:27.536Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:27.536Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:27.536Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos [none]
+[debug] [2025-05-09T01:35:27.761Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos 200
+[debug] [2025-05-09T01:35:27.762Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos {"projectNumber":"963883946464","projectId":"finaltrapmos","lifecycleState":"ACTIVE","name":"FinalTrapmos","labels":{"firebase":"enabled"},"createTime":"2024-11-24T04:55:16.403026Z","parent":{"type":"organization","id":"1009258765871"}}
+[debug] [2025-05-09T01:35:27.763Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:27.763Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:27.763Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/finaltrapmos/billingInfo [none]
+[debug] [2025-05-09T01:35:29.163Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/finaltrapmos/billingInfo 200
+[debug] [2025-05-09T01:35:29.164Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/finaltrapmos/billingInfo {"name":"projects/finaltrapmos/billingInfo","projectId":"finaltrapmos","billingAccountName":"billingAccounts/01CCDD-C47AF3-3E6044","billingEnabled":true}
+[debug] [2025-05-09T01:35:29.164Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:29.165Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:29.165Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/functions:generateUploadUrl [none]
+[debug] [2025-05-09T01:35:32.759Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/functions:generateUploadUrl 200
+[debug] [2025-05-09T01:35:32.759Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/functions:generateUploadUrl {"uploadUrl":"https://storage.googleapis.com/gcf-v2-uploads-963883946464.us-central1.cloudfunctions.appspot.com/daeb4c53-18d4-4eca-8a4b-3a3b912d27d3.zip?GoogleAccessId=service-963883946464@gcf-admin-robot.iam.gserviceaccount.com&Expires=1746756335&Signature=Wzd6Frl0wY625B2BrUdLgPJIaSIq7T9M3xUwVdMP1yGb5DlC8ZhfQDvRVcEiPdaVRxskOW5poueFslevJ7dZIbTFiENxro48fWmzMfBVG4h%2F3BQd%2BT%2F0eMOZd2C0EZoI6cdwlzDSmLTUUOcw7vI%2BWmCOJvyFOwXBOKUPoyCLxQ8l6%2BSuzU6c0HzCSDAiH9zJg%2B43WwavdmKQeFqzzEFG07M4GcgjoCWz1UeRBwXeDofOQ%2BhjG%2BY4v79AU2BYorfQcEQeXByLdqcq9VhJ5FkVUliy9sA9ovfCGJ5uPKJGpGeA1%2FNIHC7Q6Sb6c5iRJFicDosZQtZ3fTalmLnFcNBWIQ%3D%3D","storageSource":{"bucket":"gcf-v2-uploads-963883946464.us-central1.cloudfunctions.appspot.com","object":"daeb4c53-18d4-4eca-8a4b-3a3b912d27d3.zip"}}
+[debug] [2025-05-09T01:35:32.760Z] >>> [apiv2][query] PUT https://storage.googleapis.com/gcf-v2-uploads-963883946464.us-central1.cloudfunctions.appspot.com/daeb4c53-18d4-4eca-8a4b-3a3b912d27d3.zip GoogleAccessId=service-963883946464%40gcf-admin-robot.iam.gserviceaccount.com&Expires=1746756335&Signature=Wzd6Frl0wY625B2BrUdLgPJIaSIq7T9M3xUwVdMP1yGb5DlC8ZhfQDvRVcEiPdaVRxskOW5poueFslevJ7dZIbTFiENxro48fWmzMfBVG4h%2F3BQd%2BT%2F0eMOZd2C0EZoI6cdwlzDSmLTUUOcw7vI%2BWmCOJvyFOwXBOKUPoyCLxQ8l6%2BSuzU6c0HzCSDAiH9zJg%2B43WwavdmKQeFqzzEFG07M4GcgjoCWz1UeRBwXeDofOQ%2BhjG%2BY4v79AU2BYorfQcEQeXByLdqcq9VhJ5FkVUliy9sA9ovfCGJ5uPKJGpGeA1%2FNIHC7Q6Sb6c5iRJFicDosZQtZ3fTalmLnFcNBWIQ%3D%3D
+[debug] [2025-05-09T01:35:32.760Z] >>> [apiv2][body] PUT https://storage.googleapis.com/gcf-v2-uploads-963883946464.us-central1.cloudfunctions.appspot.com/daeb4c53-18d4-4eca-8a4b-3a3b912d27d3.zip [stream]
+[debug] [2025-05-09T01:35:35.287Z] <<< [apiv2][status] PUT https://storage.googleapis.com/gcf-v2-uploads-963883946464.us-central1.cloudfunctions.appspot.com/daeb4c53-18d4-4eca-8a4b-3a3b912d27d3.zip 200
+[debug] [2025-05-09T01:35:35.287Z] <<< [apiv2][body] PUT https://storage.googleapis.com/gcf-v2-uploads-963883946464.us-central1.cloudfunctions.appspot.com/daeb4c53-18d4-4eca-8a4b-3a3b912d27d3.zip [omitted]
+[info] +  functions: functions folder uploaded successfully 
+[info] i  functions: creating Node.js 18 (2nd Gen) function sendTrapmosNotification(us-central1)... 
+[debug] [2025-05-09T01:35:35.291Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:35.291Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:35.291Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/functions functionId=sendTrapmosNotification
+[debug] [2025-05-09T01:35:35.291Z] >>> [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/functions {"name":"projects/finaltrapmos/locations/us-central1/functions/sendTrapmosNotification","buildConfig":{"runtime":"nodejs18","entryPoint":"sendTrapmosNotification","source":{"storageSource":{"bucket":"gcf-v2-uploads-963883946464.us-central1.cloudfunctions.appspot.com","object":"daeb4c53-18d4-4eca-8a4b-3a3b912d27d3.zip"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""}},"serviceConfig":{"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"finaltrapmos\",\"storageBucket\":\"finaltrapmos.firebasestorage.app\"}","GCLOUD_PROJECT":"finaltrapmos","EVENTARC_CLOUD_EVENT_SOURCE":"projects/finaltrapmos/locations/us-central1/services/sendTrapmosNotification","FUNCTION_SIGNATURE_TYPE":"cloudevent","FUNCTION_TARGET":"sendTrapmosNotification"},"ingressSettings":null,"timeoutSeconds":null,"serviceAccountEmail":null,"availableMemory":"256Mi","minInstanceCount":null,"maxInstanceCount":null,"maxInstanceRequestConcurrency":80,"availableCpu":"1","vpcConnector":null,"vpcConnectorEgressSettings":null},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"d510ef5eaab9373dca4acb9732f90cd797f76145"},"eventTrigger":{"eventType":"google.cloud.firestore.document.v1.created","retryPolicy":"RETRY_POLICY_DO_NOT_RETRY","eventFilters":[{"attribute":"database","value":"(default)"},{"attribute":"namespace","value":"(default)"},{"attribute":"document","value":"Uploads/{docId}","operator":"match-path-pattern"}],"triggerRegion":"nam5"}}
+[debug] [2025-05-09T01:35:52.796Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/functions 400
+[debug] [2025-05-09T01:35:52.796Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/functions {"error":{"code":400,"message":"Validation failed for trigger projects/finaltrapmos/locations/nam5/triggers/sendtrapmosnotification-102277: Invalid resource state for \"\": Permission denied while using the Eventarc Service Agent. If you recently started to use Eventarc, it may take a few minutes before all necessary permissions are propagated to the Service Agent. Otherwise, verify that it has Eventarc Service Agent role.","status":"FAILED_PRECONDITION"}}
+[warn] !  functions: Request to https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/functions?functionId=sendTrapmosNotification had HTTP Error: 400, Validation failed for trigger projects/finaltrapmos/locations/nam5/triggers/sendtrapmosnotification-102277: Invalid resource state for "": Permission denied while using the Eventarc Service Agent. If you recently started to use Eventarc, it may take a few minutes before all necessary permissions are propagated to the Service Agent. Otherwise, verify that it has Eventarc Service Agent role. 
+[warn] !  functions: Since this is your first time using 2nd gen functions, we need a little bit longer to finish setting everything up. Retry the deployment in a few minutes. 
+[warn] !  functions:  failed to create function projects/finaltrapmos/locations/us-central1/functions/sendTrapmosNotification 
+[error] Failed to create function projects/finaltrapmos/locations/us-central1/functions/sendTrapmosNotification
+[debug] [2025-05-09T01:35:52.802Z] Total Function Deployment time: 17509
+[debug] [2025-05-09T01:35:52.802Z] 1 Functions Deployed
+[debug] [2025-05-09T01:35:52.802Z] 1 Functions Errored
+[debug] [2025-05-09T01:35:52.802Z] 0 Function Deployments Aborted
+[debug] [2025-05-09T01:35:52.802Z] Average Function Deployment time: 17508
+[info] 
+[info] Functions deploy had errors with the following functions:
+	sendTrapmosNotification(us-central1)
+[info] i  functions: cleaning up build files... 
+[debug] [2025-05-09T01:35:52.880Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:52.881Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:52.881Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:52.881Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:52.881Z] >>> [apiv2][query] DELETE https://artifactregistry.googleapis.com/v1beta2/projects/finaltrapmos/locations/us-central1/repositories/gcf-artifacts/packages/send_trapmos_notification [none]
+[debug] [2025-05-09T01:35:52.882Z] >>> [apiv2][query] GET https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list [none]
+[debug] [2025-05-09T01:35:54.287Z] <<< [apiv2][status] DELETE https://artifactregistry.googleapis.com/v1beta2/projects/finaltrapmos/locations/us-central1/repositories/gcf-artifacts/packages/send_trapmos_notification 404
+[debug] [2025-05-09T01:35:54.287Z] <<< [apiv2][body] DELETE https://artifactregistry.googleapis.com/v1beta2/projects/finaltrapmos/locations/us-central1/repositories/gcf-artifacts/packages/send_trapmos_notification {"error":{"code":404,"message":"Package \"projects/finaltrapmos/locations/us-central1/repositories/gcf-artifacts/packages/send_trapmos_notification\" was not found.","status":"NOT_FOUND"}}
+[debug] [2025-05-09T01:35:55.310Z] <<< [apiv2][status] GET https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list 404
+[debug] [2025-05-09T01:35:55.310Z] <<< [apiv2][body] GET https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list {"errors":[{"code":"NAME_UNKNOWN","message":"Repository \"us.gcr.io\" not found"}]}
+[debug] [2025-05-09T01:35:55.311Z] Failed docker command with error  Request to https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list had HTTP Error: 404, Not Found {"name":"FirebaseError","children":[],"context":{"body":{"errors":[{"code":"NAME_UNKNOWN","message":"Repository \"us.gcr.io\" not found"}],"error":{"message":"Not Found"}},"response":{"statusCode":404}},"exit":1,"message":"Request to https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list had HTTP Error: 404, Not Found","status":404}
+[debug] [2025-05-09T01:35:55.311Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:55.311Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:55.311Z] >>> [apiv2][query] GET https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list [none]
+[debug] [2025-05-09T01:35:55.678Z] <<< [apiv2][status] GET https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list 404
+[debug] [2025-05-09T01:35:55.678Z] <<< [apiv2][body] GET https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list {"errors":[{"code":"NAME_UNKNOWN","message":"Repository \"us.gcr.io\" not found"}]}
+[debug] [2025-05-09T01:35:55.678Z] Failed docker command with error  Request to https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list had HTTP Error: 404, Not Found {"name":"FirebaseError","children":[],"context":{"body":{"errors":[{"code":"NAME_UNKNOWN","message":"Repository \"us.gcr.io\" not found"}],"error":{"message":"Not Found"}},"response":{"statusCode":404}},"exit":1,"message":"Request to https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list had HTTP Error: 404, Not Found","status":404}
+[debug] [2025-05-09T01:35:55.786Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:55.786Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:35:55.786Z] >>> [apiv2][query] GET https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list [none]
+[debug] [2025-05-09T01:35:56.170Z] <<< [apiv2][status] GET https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list 404
+[debug] [2025-05-09T01:35:56.170Z] <<< [apiv2][body] GET https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list {"errors":[{"code":"NAME_UNKNOWN","message":"Repository \"us.gcr.io\" not found"}]}
+[debug] [2025-05-09T01:35:56.170Z] Failed docker command with error  Request to https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list had HTTP Error: 404, Not Found {"name":"FirebaseError","children":[],"context":{"body":{"errors":[{"code":"NAME_UNKNOWN","message":"Repository \"us.gcr.io\" not found"}],"error":{"message":"Not Found"}},"response":{"statusCode":404}},"exit":1,"message":"Request to https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list had HTTP Error: 404, Not Found","status":404}
+[warn] !  functions: Unhandled error cleaning up build images. This could result in a small monthly bill if not corrected. You can attempt to delete these images by redeploying or you can delete them manually at https://console.cloud.google.com/gcr/images/finaltrapmos/us/gcf 
+[debug] [2025-05-09T01:35:56.171Z] Functions deploy failed.
+[debug] [2025-05-09T01:35:56.171Z] {
+  "endpoint": {
+    "id": "sendTrapmosNotification",
+    "project": "finaltrapmos",
+    "region": "us-central1",
+    "entryPoint": "sendTrapmosNotification",
+    "platform": "gcfv2",
+    "runtime": "nodejs18",
+    "eventTrigger": {
+      "eventType": "google.cloud.firestore.document.v1.created",
+      "retry": false,
+      "eventFilters": {
+        "database": "(default)",
+        "namespace": "(default)"
+      },
+      "eventFilterPathPatterns": {
+        "document": "Uploads/{docId}"
+      },
+      "region": "nam5"
+    },
+    "labels": {
+      "deployment-tool": "cli-firebase"
+    },
+    "ingressSettings": null,
+    "availableMemoryMb": null,
+    "serviceAccount": null,
+    "timeoutSeconds": null,
+    "maxInstances": null,
+    "minInstances": null,
+    "concurrency": 80,
+    "vpc": null,
+    "environmentVariables": {
+      "FIREBASE_CONFIG": "{\"projectId\":\"finaltrapmos\",\"storageBucket\":\"finaltrapmos.firebasestorage.app\"}",
+      "GCLOUD_PROJECT": "finaltrapmos",
+      "EVENTARC_CLOUD_EVENT_SOURCE": "projects/finaltrapmos/locations/us-central1/services/sendTrapmosNotification"
+    },
+    "codebase": "default",
+    "cpu": 1,
+    "targetedByOnly": false,
+    "hash": "d510ef5eaab9373dca4acb9732f90cd797f76145"
+  },
+  "op": "create",
+  "original": {
+    "name": "FirebaseError",
+    "children": [],
+    "context": {
+      "function": "projects/finaltrapmos/locations/us-central1/functions/sendTrapmosNotification"
+    },
+    "exit": 1,
+    "message": "Failed to create function projects/finaltrapmos/locations/us-central1/functions/sendTrapmosNotification",
+    "original": {
+      "name": "FirebaseError",
+      "children": [],
+      "context": {
+        "body": {
+          "error": {
+            "code": 400,
+            "message": "Validation failed for trigger projects/finaltrapmos/locations/nam5/triggers/sendtrapmosnotification-102277: Invalid resource state for \"\": Permission denied while using the Eventarc Service Agent. If you recently started to use Eventarc, it may take a few minutes before all necessary permissions are propagated to the Service Agent. Otherwise, verify that it has Eventarc Service Agent role.",
+            "status": "FAILED_PRECONDITION"
+          }
+        },
+        "response": {
+          "statusCode": 400
+        }
+      },
+      "exit": 1,
+      "message": "Request to https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/functions?functionId=sendTrapmosNotification had HTTP Error: 400, Validation failed for trigger projects/finaltrapmos/locations/nam5/triggers/sendtrapmosnotification-102277: Invalid resource state for \"\": Permission denied while using the Eventarc Service Agent. If you recently started to use Eventarc, it may take a few minutes before all necessary permissions are propagated to the Service Agent. Otherwise, verify that it has Eventarc Service Agent role.",
+      "status": 400
+    },
+    "status": 400,
+    "code": 400
+  }
+}
+[debug] [2025-05-09T01:35:56.206Z] Error: Failed to create function sendTrapmosNotification in region us-central1
+    at C:\Users\Ching\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:294:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Fabricator.createV2Function (C:\Users\Ching\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:278:30)
+    at async Fabricator.createEndpoint (C:\Users\Ching\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:137:13)
+    at async handle (C:\Users\Ching\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:89:17)
+[error] 
+[error] Error: There was an error deploying functions
+[debug] [2025-05-09T01:47:15.128Z] ----------------------------------------------------------------------
+[debug] [2025-05-09T01:47:15.130Z] Command:       C:\nvm4w\nodejs\node.exe C:\Users\Ching\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2025-05-09T01:47:15.130Z] CLI Version:   13.27.0
+[debug] [2025-05-09T01:47:15.131Z] Platform:      win32
+[debug] [2025-05-09T01:47:15.131Z] Node Version:  v20.11.0
+[debug] [2025-05-09T01:47:15.131Z] Time:          Fri May 09 2025 09:47:15 GMT+0800 (Philippine Standard Time)
+[debug] [2025-05-09T01:47:15.131Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-05-09T01:47:15.189Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-05-09T01:47:15.189Z] > authorizing via signed-in user (qkjpching@tip.edu.ph)
+[debug] [2025-05-09T01:47:15.190Z] [iam] checking project finaltrapmos for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2025-05-09T01:47:15.191Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:15.191Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:15.192Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos:testIamPermissions [none]
+[debug] [2025-05-09T01:47:15.192Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos:testIamPermissions x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:47:15.192Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2025-05-09T01:47:16.120Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos:testIamPermissions 200
+[debug] [2025-05-09T01:47:16.120Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2025-05-09T01:47:16.121Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:16.121Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:16.121Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/finaltrapmos/serviceAccounts/finaltrapmos@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2025-05-09T01:47:16.121Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/finaltrapmos/serviceAccounts/finaltrapmos@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2025-05-09T01:47:17.313Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/finaltrapmos/serviceAccounts/finaltrapmos@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2025-05-09T01:47:17.313Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/finaltrapmos/serviceAccounts/finaltrapmos@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'finaltrapmos'...
+[info] 
+[info] i  deploying functions 
+[info] +  functions: Finished running predeploy script. 
+[debug] [2025-05-09T01:47:17.317Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:17.317Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:17.317Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos [none]
+[debug] [2025-05-09T01:47:17.544Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos 200
+[debug] [2025-05-09T01:47:17.544Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos {"projectNumber":"963883946464","projectId":"finaltrapmos","lifecycleState":"ACTIVE","name":"FinalTrapmos","labels":{"firebase":"enabled"},"createTime":"2024-11-24T04:55:16.403026Z","parent":{"type":"organization","id":"1009258765871"}}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[debug] [2025-05-09T01:47:17.546Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:17.546Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:17.546Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:17.546Z] Checked if tokens are valid: true, expires at: 1746757320227
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2025-05-09T01:47:17.546Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:17.546Z] Checked if tokens are valid: true, expires at: 1746757320227
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2025-05-09T01:47:17.547Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:17.547Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:17.547Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-05-09T01:47:17.547Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:47:17.548Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/runtimeconfig.googleapis.com [none]
+[debug] [2025-05-09T01:47:17.548Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:47:17.548Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/cloudbuild.googleapis.com [none]
+[debug] [2025-05-09T01:47:17.548Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/cloudbuild.googleapis.com x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:47:17.549Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/artifactregistry.googleapis.com [none]
+[debug] [2025-05-09T01:47:17.549Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/artifactregistry.googleapis.com x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:47:17.873Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/cloudbuild.googleapis.com 200
+[debug] [2025-05-09T01:47:17.873Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/cloudbuild.googleapis.com [omitted]
+[info] +  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2025-05-09T01:47:18.721Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/runtimeconfig.googleapis.com 200
+[debug] [2025-05-09T01:47:18.721Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2025-05-09T01:47:18.724Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/cloudfunctions.googleapis.com 200
+[debug] [2025-05-09T01:47:18.724Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/cloudfunctions.googleapis.com [omitted]
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2025-05-09T01:47:18.729Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/artifactregistry.googleapis.com 200
+[debug] [2025-05-09T01:47:18.729Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/artifactregistry.googleapis.com [omitted]
+[info] +  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2025-05-09T01:47:18.730Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:18.730Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:18.730Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/finaltrapmos/adminSdkConfig [none]
+[debug] [2025-05-09T01:47:19.834Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/finaltrapmos/adminSdkConfig 200
+[debug] [2025-05-09T01:47:19.834Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/finaltrapmos/adminSdkConfig {"projectId":"finaltrapmos","storageBucket":"finaltrapmos.firebasestorage.app"}
+[debug] [2025-05-09T01:47:19.835Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:19.835Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:19.835Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/finaltrapmos/configs [none]
+[debug] [2025-05-09T01:47:20.221Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/finaltrapmos/configs 200
+[debug] [2025-05-09T01:47:20.221Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/finaltrapmos/configs {}
+[debug] [2025-05-09T01:47:20.223Z] Validating nodejs source
+[warn] !  functions: Runtime Node.js 18 was deprecated on 2025-04-30 and will be decommissioned on 2025-10-31, after which you will not be able to deploy without upgrading. Consider upgrading now to avoid disruption. See https://cloud.google.com/functions/docs/runtime-support for full details on the lifecycle policy 
+[debug] [2025-05-09T01:47:20.866Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^13.3.0",
+    "firebase-functions": "^6.3.2",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.15.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
+[debug] [2025-05-09T01:47:20.866Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2025-05-09T01:47:20.867Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-05-09T01:47:20.873Z] Found firebase-functions binary at 'C:\Users\Ching\Documents\New-Trapmos\FinalTrapmos-master (1)\Finaltrapmos-Master\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8376
+
+[debug] [2025-05-09T01:47:21.204Z] Got response from /__/functions.yaml {"endpoints":{"sendTrapmosNotification":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"eventTrigger":{"eventType":"google.cloud.firestore.document.v1.created","eventFilters":{"database":"(default)","namespace":"(default)"},"eventFilterPathPatterns":{"document":"Uploads/{docId}"},"retry":false},"entryPoint":"sendTrapmosNotification"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[info] i  extensions: ensuring required API firebaseextensions.googleapis.com is enabled... 
+[debug] [2025-05-09T01:47:26.233Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:26.233Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:26.233Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/firebaseextensions.googleapis.com [none]
+[debug] [2025-05-09T01:47:26.233Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/firebaseextensions.googleapis.com x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:47:27.404Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/firebaseextensions.googleapis.com 200
+[debug] [2025-05-09T01:47:27.404Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/firebaseextensions.googleapis.com [omitted]
+[info] +  extensions: required API firebaseextensions.googleapis.com is enabled 
+[debug] [2025-05-09T01:47:27.405Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-05-09T01:47:27.405Z] > authorizing via signed-in user (qkjpching@tip.edu.ph)
+[debug] [2025-05-09T01:47:27.405Z] [iam] checking project finaltrapmos for permissions ["firebase.projects.get","firebaseextensions.instances.list"]
+[debug] [2025-05-09T01:47:27.405Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:27.405Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:27.405Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos:testIamPermissions [none]
+[debug] [2025-05-09T01:47:27.405Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos:testIamPermissions x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:47:27.405Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
+[debug] [2025-05-09T01:47:28.280Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos:testIamPermissions 200
+[debug] [2025-05-09T01:47:28.280Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
+[debug] [2025-05-09T01:47:28.280Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:28.280Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:28.281Z] >>> [apiv2][query] GET https://firebaseextensions.googleapis.com/v1beta/projects/finaltrapmos/instances pageSize=100&pageToken=
+[debug] [2025-05-09T01:47:29.393Z] <<< [apiv2][status] GET https://firebaseextensions.googleapis.com/v1beta/projects/finaltrapmos/instances 200
+[debug] [2025-05-09T01:47:29.393Z] <<< [apiv2][body] GET https://firebaseextensions.googleapis.com/v1beta/projects/finaltrapmos/instances {}
+[info] i  functions: preparing functions directory for uploading... 
+[info] i  functions: packaged C:\Users\Ching\Documents\New-Trapmos\FinalTrapmos-master (1)\Finaltrapmos-Master\functions (8.07 MB) for uploading 
+[debug] [2025-05-09T01:47:30.605Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:30.605Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:30.605Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/projects/finaltrapmos/locations/-/functions [none]
+[debug] [2025-05-09T01:47:31.372Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/projects/finaltrapmos/locations/-/functions 200
+[debug] [2025-05-09T01:47:31.373Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/projects/finaltrapmos/locations/-/functions {}
+[debug] [2025-05-09T01:47:31.373Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:31.373Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:31.373Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/-/functions filter=environment%3D%22GEN_2%22
+[debug] [2025-05-09T01:47:32.968Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/-/functions 200
+[debug] [2025-05-09T01:47:32.969Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/-/functions {}
+[debug] [2025-05-09T01:47:32.969Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:32.969Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:32.969Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/finaltrapmos/databases/(default) [none]
+[debug] [2025-05-09T01:47:34.156Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/finaltrapmos/databases/(default) 200
+[debug] [2025-05-09T01:47:34.156Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/finaltrapmos/databases/(default) {"name":"projects/finaltrapmos/databases/(default)","uid":"dd896729-71d6-4fbe-84ab-dba8d89fe71f","createTime":"2024-11-24T05:46:27.939363Z","updateTime":"2024-11-24T05:46:27.939363Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2025-05-09T00:47:34.072849Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"etag":"IK3mtrOilY0DMLyn6IOoqYwD"}
+[info] i  functions: ensuring required API run.googleapis.com is enabled... 
+[debug] [2025-05-09T01:47:34.157Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:34.157Z] Checked if tokens are valid: true, expires at: 1746757320227
+[info] i  functions: ensuring required API eventarc.googleapis.com is enabled... 
+[debug] [2025-05-09T01:47:34.158Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:34.158Z] Checked if tokens are valid: true, expires at: 1746757320227
+[info] i  functions: ensuring required API pubsub.googleapis.com is enabled... 
+[debug] [2025-05-09T01:47:34.158Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:34.158Z] Checked if tokens are valid: true, expires at: 1746757320227
+[info] i  functions: ensuring required API storage.googleapis.com is enabled... 
+[debug] [2025-05-09T01:47:34.158Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:34.158Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:34.158Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/run.googleapis.com [none]
+[debug] [2025-05-09T01:47:34.158Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/run.googleapis.com x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:47:34.159Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/eventarc.googleapis.com [none]
+[debug] [2025-05-09T01:47:34.159Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/eventarc.googleapis.com x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:47:34.160Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/pubsub.googleapis.com [none]
+[debug] [2025-05-09T01:47:34.160Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/pubsub.googleapis.com x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:47:34.161Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/storage.googleapis.com [none]
+[debug] [2025-05-09T01:47:34.161Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/storage.googleapis.com x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:47:35.295Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/pubsub.googleapis.com 200
+[debug] [2025-05-09T01:47:35.295Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/pubsub.googleapis.com [omitted]
+[info] +  functions: required API pubsub.googleapis.com is enabled 
+[debug] [2025-05-09T01:47:35.303Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/eventarc.googleapis.com 200
+[debug] [2025-05-09T01:47:35.303Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/eventarc.googleapis.com [omitted]
+[info] +  functions: required API eventarc.googleapis.com is enabled 
+[debug] [2025-05-09T01:47:35.310Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/run.googleapis.com 200
+[debug] [2025-05-09T01:47:35.310Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/run.googleapis.com [omitted]
+[info] +  functions: required API run.googleapis.com is enabled 
+[debug] [2025-05-09T01:47:35.313Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/storage.googleapis.com 200
+[debug] [2025-05-09T01:47:35.313Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/finaltrapmos/services/storage.googleapis.com [omitted]
+[info] +  functions: required API storage.googleapis.com is enabled 
+[info] i  functions: generating the service identity for pubsub.googleapis.com... 
+[debug] [2025-05-09T01:47:35.314Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:35.314Z] Checked if tokens are valid: true, expires at: 1746757320227
+[info] i  functions: generating the service identity for eventarc.googleapis.com... 
+[debug] [2025-05-09T01:47:35.314Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:35.314Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:35.314Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/963883946464/services/pubsub.googleapis.com:generateServiceIdentity [none]
+[debug] [2025-05-09T01:47:35.314Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/963883946464/services/eventarc.googleapis.com:generateServiceIdentity [none]
+[debug] [2025-05-09T01:47:35.613Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/963883946464/services/pubsub.googleapis.com:generateServiceIdentity 200
+[debug] [2025-05-09T01:47:35.613Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/963883946464/services/pubsub.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-963883946464@gcp-sa-pubsub.iam.gserviceaccount.com","uniqueId":"106137512732566936009"}}
+[debug] [2025-05-09T01:47:35.644Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/963883946464/services/eventarc.googleapis.com:generateServiceIdentity 200
+[debug] [2025-05-09T01:47:35.644Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/963883946464/services/eventarc.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-963883946464@gcp-sa-eventarc.iam.gserviceaccount.com","uniqueId":"110736197866576782417"}}
+[debug] [2025-05-09T01:47:35.645Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:35.645Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:35.645Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/963883946464:getIamPolicy [none]
+[debug] [2025-05-09T01:47:35.999Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/963883946464:getIamPolicy 200
+[debug] [2025-05-09T01:47:35.999Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/963883946464:getIamPolicy {"version":1,"etag":"BwY0qfvrK8M=","bindings":[{"role":"roles/cloudbuild.builds.builder","members":["serviceAccount:963883946464@cloudbuild.gserviceaccount.com"]},{"role":"roles/cloudbuild.serviceAgent","members":["serviceAccount:service-963883946464@gcp-sa-cloudbuild.iam.gserviceaccount.com"]},{"role":"roles/cloudfunctions.developer","members":["serviceAccount:github-action-893323434@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/cloudfunctions.serviceAgent","members":["serviceAccount:service-963883946464@gcf-admin-robot.iam.gserviceaccount.com"]},{"role":"roles/containerregistry.ServiceAgent","members":["serviceAccount:service-963883946464@containerregistry.iam.gserviceaccount.com"]},{"role":"roles/editor","members":["serviceAccount:963883946464-compute@developer.gserviceaccount.com","serviceAccount:963883946464@cloudservices.gserviceaccount.com","serviceAccount:finaltrapmos@appspot.gserviceaccount.com"]},{"role":"roles/eventarc.eventReceiver","members":["serviceAccount:963883946464-compute@developer.gserviceaccount.com"]},{"role":"roles/eventarc.serviceAgent","members":["serviceAccount:service-963883946464@gcp-sa-eventarc.iam.gserviceaccount.com"]},{"role":"roles/firebase.managementServiceAgent","members":["serviceAccount:firebase-service-account@firebase-sa-management.iam.gserviceaccount.com","serviceAccount:service-963883946464@gcp-sa-firebase.iam.gserviceaccount.com"]},{"role":"roles/firebase.sdkAdminServiceAgent","members":["serviceAccount:firebase-adminsdk-n75qh@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/firebaseauth.admin","members":["serviceAccount:firebase-adminsdk-n75qh@finaltrapmos.iam.gserviceaccount.com","serviceAccount:github-action-893323434@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/firebasehosting.admin","members":["serviceAccount:github-action-893323434@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/firebasemods.serviceAgent","members":["serviceAccount:service-963883946464@gcp-sa-firebasemods.iam.gserviceaccount.com"]},{"role":"roles/firebaserules.system","members":["serviceAccount:service-963883946464@firebase-rules.iam.gserviceaccount.com"]},{"role":"roles/firebasestorage.serviceAgent","members":["serviceAccount:service-963883946464@gcp-sa-firebasestorage.iam.gserviceaccount.com"]},{"role":"roles/firestore.serviceAgent","members":["serviceAccount:service-963883946464@gcp-sa-firestore.iam.gserviceaccount.com"]},{"role":"roles/iam.serviceAccountTokenCreator","members":["serviceAccount:firebase-adminsdk-n75qh@finaltrapmos.iam.gserviceaccount.com","serviceAccount:service-963883946464@gcp-sa-pubsub.iam.gserviceaccount.com"]},{"role":"roles/owner","members":["user:qkjpching@tip.edu.ph"]},{"role":"roles/run.invoker","members":["serviceAccount:963883946464-compute@developer.gserviceaccount.com"]},{"role":"roles/run.serviceAgent","members":["serviceAccount:service-963883946464@serverless-robot-prod.iam.gserviceaccount.com"]},{"role":"roles/run.viewer","members":["serviceAccount:github-action-893323434@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/serviceusage.apiKeysViewer","members":["serviceAccount:github-action-893323434@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/serviceusage.serviceUsageConsumer","members":["serviceAccount:github-action-893323434@finaltrapmos.iam.gserviceaccount.com"]},{"role":"roles/storage.admin","members":["serviceAccount:firebase-adminsdk-n75qh@finaltrapmos.iam.gserviceaccount.com"]}]}
+[debug] [2025-05-09T01:47:35.999Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:35.999Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:36.000Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos [none]
+[debug] [2025-05-09T01:47:36.555Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos 200
+[debug] [2025-05-09T01:47:36.555Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos {"projectNumber":"963883946464","projectId":"finaltrapmos","lifecycleState":"ACTIVE","name":"FinalTrapmos","labels":{"firebase":"enabled"},"createTime":"2024-11-24T04:55:16.403026Z","parent":{"type":"organization","id":"1009258765871"}}
+[debug] [2025-05-09T01:47:36.556Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:36.556Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:36.556Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/finaltrapmos/billingInfo [none]
+[debug] [2025-05-09T01:47:38.150Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/finaltrapmos/billingInfo 200
+[debug] [2025-05-09T01:47:38.150Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/finaltrapmos/billingInfo {"name":"projects/finaltrapmos/billingInfo","projectId":"finaltrapmos","billingAccountName":"billingAccounts/01CCDD-C47AF3-3E6044","billingEnabled":true}
+[debug] [2025-05-09T01:47:38.151Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:38.151Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:38.151Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/functions:generateUploadUrl [none]
+[debug] [2025-05-09T01:47:39.574Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/functions:generateUploadUrl 200
+[debug] [2025-05-09T01:47:39.574Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/functions:generateUploadUrl {"uploadUrl":"https://storage.googleapis.com/gcf-v2-uploads-963883946464.us-central1.cloudfunctions.appspot.com/3040a4a0-6740-4694-9531-aa43ec60c99b.zip?GoogleAccessId=service-963883946464@gcf-admin-robot.iam.gserviceaccount.com&Expires=1746757059&Signature=gSmYqQ%2BoSLTCuKQIVkqAT8s%2FUY7dA9Oni81%2FpV0RHogEqAAm6Z4eB0UJfrRoSXwEmtfrnAD7oqNzxR6Pmjo8gp5e4MtZoZlvWGHdp53eLpzg7TDG%2FaYLf2ffnlw5iCaW39LNkQto%2FiyC0fP3%2BeDCKK%2FHXUaFSKUDAPy4wHRd%2FdjNgf5itv8NHeRQSkj0Scm%2Bdm7U%2Br%2FgmB3YFJMcLSg9tZifcakd0s8iJb1NU79nVZOJ6J0LGnXrlmj5MhvkISSokL6Wu9eApQC%2BwEMXMU6V6K6vSk1xrl6tYdEF0HEbNS%2FNHYznzpCd6I8q2td96YawXNc3WIWYEKYzmalp8vtn6g%3D%3D","storageSource":{"bucket":"gcf-v2-uploads-963883946464.us-central1.cloudfunctions.appspot.com","object":"3040a4a0-6740-4694-9531-aa43ec60c99b.zip"}}
+[debug] [2025-05-09T01:47:39.575Z] >>> [apiv2][query] PUT https://storage.googleapis.com/gcf-v2-uploads-963883946464.us-central1.cloudfunctions.appspot.com/3040a4a0-6740-4694-9531-aa43ec60c99b.zip GoogleAccessId=service-963883946464%40gcf-admin-robot.iam.gserviceaccount.com&Expires=1746757059&Signature=gSmYqQ%2BoSLTCuKQIVkqAT8s%2FUY7dA9Oni81%2FpV0RHogEqAAm6Z4eB0UJfrRoSXwEmtfrnAD7oqNzxR6Pmjo8gp5e4MtZoZlvWGHdp53eLpzg7TDG%2FaYLf2ffnlw5iCaW39LNkQto%2FiyC0fP3%2BeDCKK%2FHXUaFSKUDAPy4wHRd%2FdjNgf5itv8NHeRQSkj0Scm%2Bdm7U%2Br%2FgmB3YFJMcLSg9tZifcakd0s8iJb1NU79nVZOJ6J0LGnXrlmj5MhvkISSokL6Wu9eApQC%2BwEMXMU6V6K6vSk1xrl6tYdEF0HEbNS%2FNHYznzpCd6I8q2td96YawXNc3WIWYEKYzmalp8vtn6g%3D%3D
+[debug] [2025-05-09T01:47:39.575Z] >>> [apiv2][body] PUT https://storage.googleapis.com/gcf-v2-uploads-963883946464.us-central1.cloudfunctions.appspot.com/3040a4a0-6740-4694-9531-aa43ec60c99b.zip [stream]
+[debug] [2025-05-09T01:47:42.970Z] <<< [apiv2][status] PUT https://storage.googleapis.com/gcf-v2-uploads-963883946464.us-central1.cloudfunctions.appspot.com/3040a4a0-6740-4694-9531-aa43ec60c99b.zip 200
+[debug] [2025-05-09T01:47:42.970Z] <<< [apiv2][body] PUT https://storage.googleapis.com/gcf-v2-uploads-963883946464.us-central1.cloudfunctions.appspot.com/3040a4a0-6740-4694-9531-aa43ec60c99b.zip [omitted]
+[info] +  functions: functions folder uploaded successfully 
+[info] i  functions: creating Node.js 18 (2nd Gen) function sendTrapmosNotification(us-central1)... 
+[debug] [2025-05-09T01:47:42.974Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:42.974Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:42.974Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/functions functionId=sendTrapmosNotification
+[debug] [2025-05-09T01:47:42.974Z] >>> [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/functions {"name":"projects/finaltrapmos/locations/us-central1/functions/sendTrapmosNotification","buildConfig":{"runtime":"nodejs18","entryPoint":"sendTrapmosNotification","source":{"storageSource":{"bucket":"gcf-v2-uploads-963883946464.us-central1.cloudfunctions.appspot.com","object":"3040a4a0-6740-4694-9531-aa43ec60c99b.zip"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""}},"serviceConfig":{"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"finaltrapmos\",\"storageBucket\":\"finaltrapmos.firebasestorage.app\"}","GCLOUD_PROJECT":"finaltrapmos","EVENTARC_CLOUD_EVENT_SOURCE":"projects/finaltrapmos/locations/us-central1/services/sendTrapmosNotification","FUNCTION_SIGNATURE_TYPE":"cloudevent","FUNCTION_TARGET":"sendTrapmosNotification"},"ingressSettings":null,"timeoutSeconds":null,"serviceAccountEmail":null,"availableMemory":"256Mi","minInstanceCount":null,"maxInstanceCount":null,"maxInstanceRequestConcurrency":80,"availableCpu":"1","vpcConnector":null,"vpcConnectorEgressSettings":null},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"d510ef5eaab9373dca4acb9732f90cd797f76145"},"eventTrigger":{"eventType":"google.cloud.firestore.document.v1.created","retryPolicy":"RETRY_POLICY_DO_NOT_RETRY","eventFilters":[{"attribute":"database","value":"(default)"},{"attribute":"namespace","value":"(default)"},{"attribute":"document","value":"Uploads/{docId}","operator":"match-path-pattern"}],"triggerRegion":"nam5"}}
+[debug] [2025-05-09T01:47:45.454Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/functions 200
+[debug] [2025-05-09T01:47:45.454Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/functions {"name":"projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-05-09T01:47:45.324108504Z","target":"projects/finaltrapmos/locations/us-central1/functions/sendTrapmosNotification","verb":"create","cancelRequested":false,"apiVersion":"v2"},"done":false}
+[debug] [2025-05-09T01:47:45.455Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:45.455Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:45.455Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 [none]
+[debug] [2025-05-09T01:47:46.747Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 200
+[debug] [2025-05-09T01:47:46.747Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 {"name":"projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-05-09T01:47:45.324108504Z","target":"projects/finaltrapmos/locations/us-central1/functions/sendTrapmosNotification","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/finaltrapmos/locations/us-central1/functions/sendTrapmosNotification","buildConfig":{"runtime":"nodejs18","entryPoint":"sendTrapmosNotification","source":{"storageSource":{"bucket":"gcf-v2-sources-963883946464-us-central1","object":"sendTrapmosNotification/function-source.zip","generation":"1746755264461896"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/finaltrapmos/serviceAccounts/963883946464-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/finaltrapmos/locations/us-central1/services/sendtrapmosnotification","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"finaltrapmos\",\"storageBucket\":\"finaltrapmos.firebasestorage.app\"}","GCLOUD_PROJECT":"finaltrapmos","EVENTARC_CLOUD_EVENT_SOURCE":"projects/finaltrapmos/locations/us-central1/services/sendTrapmosNotification","FUNCTION_SIGNATURE_TYPE":"cloudevent","FUNCTION_TARGET":"sendTrapmosNotification","LOG_EXECUTION_ID":"true"},"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"963883946464-compute@developer.gserviceaccount.com","availableMemory":"256Mi","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"eventTrigger":{"trigger":"projects/finaltrapmos/locations/nam5/triggers/sendtrapmosnotification-529671","triggerRegion":"nam5","eventType":"google.cloud.firestore.document.v1.created","eventFilters":[{"attribute":"database","value":"(default)"},{"attribute":"namespace","value":"(default)"},{"attribute":"document","value":"Uploads/{docId}","operator":"match-path-pattern"}],"serviceAccountEmail":"963883946464-compute@developer.gserviceaccount.com","retryPolicy":"RETRY_POLICY_DO_NOT_RETRY"},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"d510ef5eaab9373dca4acb9732f90cd797f76145"},"environment":"GEN_2"},"stages":[{"name":"BUILD","state":"NOT_STARTED","stateMessages":[{"severity":"WARNING","type":"BuildAnalysisWarning","message":"Node.js 18 is no longer supported by the Node.js community as of 30 April, 2025. Runtime nodejs18 is currently deprecated for Cloud Functions. We recommend you to upgrade to the latest version of Node.js as soon as possible."}]},{"name":"SERVICE","state":"NOT_STARTED"},{"name":"TRIGGER","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION"},"done":false}
+[debug] [2025-05-09T01:47:47.258Z] [create-default-us-central1-sendTrapmosNotification] Retrying task index 0
+[debug] [2025-05-09T01:47:47.259Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:47.259Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:47.259Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 [none]
+[debug] [2025-05-09T01:47:48.562Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 200
+[debug] [2025-05-09T01:47:48.563Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 {"name":"projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-05-09T01:47:45.324108504Z","target":"projects/finaltrapmos/locations/us-central1/functions/sendTrapmosNotification","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/finaltrapmos/locations/us-central1/functions/sendTrapmosNotification","buildConfig":{"runtime":"nodejs18","entryPoint":"sendTrapmosNotification","source":{"storageSource":{"bucket":"gcf-v2-sources-963883946464-us-central1","object":"sendTrapmosNotification/function-source.zip","generation":"1746755264461896"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/finaltrapmos/serviceAccounts/963883946464-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/finaltrapmos/locations/us-central1/services/sendtrapmosnotification","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"finaltrapmos\",\"storageBucket\":\"finaltrapmos.firebasestorage.app\"}","GCLOUD_PROJECT":"finaltrapmos","EVENTARC_CLOUD_EVENT_SOURCE":"projects/finaltrapmos/locations/us-central1/services/sendTrapmosNotification","FUNCTION_SIGNATURE_TYPE":"cloudevent","FUNCTION_TARGET":"sendTrapmosNotification","LOG_EXECUTION_ID":"true"},"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"963883946464-compute@developer.gserviceaccount.com","availableMemory":"256Mi","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"eventTrigger":{"trigger":"projects/finaltrapmos/locations/nam5/triggers/sendtrapmosnotification-529671","triggerRegion":"nam5","eventType":"google.cloud.firestore.document.v1.created","eventFilters":[{"attribute":"database","value":"(default)"},{"attribute":"namespace","value":"(default)"},{"attribute":"document","value":"Uploads/{docId}","operator":"match-path-pattern"}],"serviceAccountEmail":"963883946464-compute@developer.gserviceaccount.com","retryPolicy":"RETRY_POLICY_DO_NOT_RETRY"},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"d510ef5eaab9373dca4acb9732f90cd797f76145"},"environment":"GEN_2"},"stages":[{"name":"BUILD","state":"NOT_STARTED","stateMessages":[{"severity":"WARNING","type":"BuildAnalysisWarning","message":"Node.js 18 is no longer supported by the Node.js community as of 30 April, 2025. Runtime nodejs18 is currently deprecated for Cloud Functions. We recommend you to upgrade to the latest version of Node.js as soon as possible."}]},{"name":"SERVICE","state":"NOT_STARTED"},{"name":"TRIGGER","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION"},"done":false}
+[debug] [2025-05-09T01:47:49.569Z] [create-default-us-central1-sendTrapmosNotification] Retrying task index 0
+[debug] [2025-05-09T01:47:49.569Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:49.569Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:49.569Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 [none]
+[debug] [2025-05-09T01:47:50.871Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 200
+[debug] [2025-05-09T01:47:50.872Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 {"name":"projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-05-09T01:47:45.324108504Z","target":"projects/finaltrapmos/locations/us-central1/functions/sendTrapmosNotification","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/finaltrapmos/locations/us-central1/functions/sendTrapmosNotification","buildConfig":{"runtime":"nodejs18","entryPoint":"sendTrapmosNotification","source":{"storageSource":{"bucket":"gcf-v2-sources-963883946464-us-central1","object":"sendTrapmosNotification/function-source.zip","generation":"1746755264461896"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/finaltrapmos/serviceAccounts/963883946464-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/finaltrapmos/locations/us-central1/services/sendtrapmosnotification","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"finaltrapmos\",\"storageBucket\":\"finaltrapmos.firebasestorage.app\"}","GCLOUD_PROJECT":"finaltrapmos","EVENTARC_CLOUD_EVENT_SOURCE":"projects/finaltrapmos/locations/us-central1/services/sendTrapmosNotification","FUNCTION_SIGNATURE_TYPE":"cloudevent","FUNCTION_TARGET":"sendTrapmosNotification","LOG_EXECUTION_ID":"true"},"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"963883946464-compute@developer.gserviceaccount.com","availableMemory":"256Mi","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"eventTrigger":{"trigger":"projects/finaltrapmos/locations/nam5/triggers/sendtrapmosnotification-529671","triggerRegion":"nam5","eventType":"google.cloud.firestore.document.v1.created","eventFilters":[{"attribute":"database","value":"(default)"},{"attribute":"namespace","value":"(default)"},{"attribute":"document","value":"Uploads/{docId}","operator":"match-path-pattern"}],"serviceAccountEmail":"963883946464-compute@developer.gserviceaccount.com","retryPolicy":"RETRY_POLICY_DO_NOT_RETRY"},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"d510ef5eaab9373dca4acb9732f90cd797f76145"},"environment":"GEN_2"},"stages":[{"name":"BUILD","state":"NOT_STARTED","stateMessages":[{"severity":"WARNING","type":"BuildAnalysisWarning","message":"Node.js 18 is no longer supported by the Node.js community as of 30 April, 2025. Runtime nodejs18 is currently deprecated for Cloud Functions. We recommend you to upgrade to the latest version of Node.js as soon as possible."}]},{"name":"SERVICE","state":"NOT_STARTED"},{"name":"TRIGGER","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION"},"done":false}
+[debug] [2025-05-09T01:47:52.886Z] [create-default-us-central1-sendTrapmosNotification] Retrying task index 0
+[debug] [2025-05-09T01:47:52.886Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:52.886Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:52.886Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 [none]
+[debug] [2025-05-09T01:47:54.205Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 200
+[debug] [2025-05-09T01:47:54.205Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 {"name":"projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-05-09T01:47:45.324108504Z","target":"projects/finaltrapmos/locations/us-central1/functions/sendTrapmosNotification","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/finaltrapmos/locations/us-central1/functions/sendTrapmosNotification","buildConfig":{"runtime":"nodejs18","entryPoint":"sendTrapmosNotification","source":{"storageSource":{"bucket":"gcf-v2-sources-963883946464-us-central1","object":"sendTrapmosNotification/function-source.zip","generation":"1746755264461896"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/finaltrapmos/serviceAccounts/963883946464-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/finaltrapmos/locations/us-central1/services/sendtrapmosnotification","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"finaltrapmos\",\"storageBucket\":\"finaltrapmos.firebasestorage.app\"}","GCLOUD_PROJECT":"finaltrapmos","EVENTARC_CLOUD_EVENT_SOURCE":"projects/finaltrapmos/locations/us-central1/services/sendTrapmosNotification","FUNCTION_SIGNATURE_TYPE":"cloudevent","FUNCTION_TARGET":"sendTrapmosNotification","LOG_EXECUTION_ID":"true"},"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"963883946464-compute@developer.gserviceaccount.com","availableMemory":"256Mi","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"eventTrigger":{"trigger":"projects/finaltrapmos/locations/nam5/triggers/sendtrapmosnotification-529671","triggerRegion":"nam5","eventType":"google.cloud.firestore.document.v1.created","eventFilters":[{"attribute":"database","value":"(default)"},{"attribute":"namespace","value":"(default)"},{"attribute":"document","value":"Uploads/{docId}","operator":"match-path-pattern"}],"serviceAccountEmail":"963883946464-compute@developer.gserviceaccount.com","retryPolicy":"RETRY_POLICY_DO_NOT_RETRY"},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"d510ef5eaab9373dca4acb9732f90cd797f76145"},"environment":"GEN_2"},"stages":[{"name":"BUILD","state":"NOT_STARTED","stateMessages":[{"severity":"WARNING","type":"BuildAnalysisWarning","message":"Node.js 18 is no longer supported by the Node.js community as of 30 April, 2025. Runtime nodejs18 is currently deprecated for Cloud Functions. We recommend you to upgrade to the latest version of Node.js as soon as possible."}]},{"name":"SERVICE","state":"NOT_STARTED"},{"name":"TRIGGER","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION"},"done":false}
+[debug] [2025-05-09T01:47:58.210Z] [create-default-us-central1-sendTrapmosNotification] Retrying task index 0
+[debug] [2025-05-09T01:47:58.210Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:58.210Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:47:58.210Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 [none]
+[debug] [2025-05-09T01:47:59.448Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 200
+[debug] [2025-05-09T01:47:59.448Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 {"name":"projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-05-09T01:47:45.324108504Z","target":"projects/finaltrapmos/locations/us-central1/functions/sendTrapmosNotification","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/finaltrapmos/locations/us-central1/functions/sendTrapmosNotification","buildConfig":{"runtime":"nodejs18","entryPoint":"sendTrapmosNotification","source":{"storageSource":{"bucket":"gcf-v2-sources-963883946464-us-central1","object":"sendTrapmosNotification/function-source.zip","generation":"1746755264461896"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/finaltrapmos/serviceAccounts/963883946464-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/finaltrapmos/locations/us-central1/services/sendtrapmosnotification","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"finaltrapmos\",\"storageBucket\":\"finaltrapmos.firebasestorage.app\"}","GCLOUD_PROJECT":"finaltrapmos","EVENTARC_CLOUD_EVENT_SOURCE":"projects/finaltrapmos/locations/us-central1/services/sendTrapmosNotification","FUNCTION_SIGNATURE_TYPE":"cloudevent","FUNCTION_TARGET":"sendTrapmosNotification","LOG_EXECUTION_ID":"true"},"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"963883946464-compute@developer.gserviceaccount.com","availableMemory":"256Mi","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"eventTrigger":{"trigger":"projects/finaltrapmos/locations/nam5/triggers/sendtrapmosnotification-529671","triggerRegion":"nam5","eventType":"google.cloud.firestore.document.v1.created","eventFilters":[{"attribute":"database","value":"(default)"},{"attribute":"namespace","value":"(default)"},{"attribute":"document","value":"Uploads/{docId}","operator":"match-path-pattern"}],"serviceAccountEmail":"963883946464-compute@developer.gserviceaccount.com","retryPolicy":"RETRY_POLICY_DO_NOT_RETRY"},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"d510ef5eaab9373dca4acb9732f90cd797f76145"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/963883946464/locations/us-central1/builds/94af569a-e4fd-4350-aba3-363564da2ce8","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/94af569a-e4fd-4350-aba3-363564da2ce8?project=963883946464"},{"name":"SERVICE","state":"NOT_STARTED"},{"name":"TRIGGER","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION","buildName":"projects/963883946464/locations/us-central1/builds/94af569a-e4fd-4350-aba3-363564da2ce8"},"done":false}
+[debug] [2025-05-09T01:48:07.457Z] [create-default-us-central1-sendTrapmosNotification] Retrying task index 0
+[debug] [2025-05-09T01:48:07.457Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:48:07.457Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:48:07.457Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 [none]
+[debug] [2025-05-09T01:48:08.806Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 200
+[debug] [2025-05-09T01:48:08.806Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 {"name":"projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-05-09T01:47:45.324108504Z","target":"projects/finaltrapmos/locations/us-central1/functions/sendTrapmosNotification","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/finaltrapmos/locations/us-central1/functions/sendTrapmosNotification","buildConfig":{"runtime":"nodejs18","entryPoint":"sendTrapmosNotification","source":{"storageSource":{"bucket":"gcf-v2-sources-963883946464-us-central1","object":"sendTrapmosNotification/function-source.zip","generation":"1746755264461896"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/finaltrapmos/serviceAccounts/963883946464-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/finaltrapmos/locations/us-central1/services/sendtrapmosnotification","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"finaltrapmos\",\"storageBucket\":\"finaltrapmos.firebasestorage.app\"}","GCLOUD_PROJECT":"finaltrapmos","EVENTARC_CLOUD_EVENT_SOURCE":"projects/finaltrapmos/locations/us-central1/services/sendTrapmosNotification","FUNCTION_SIGNATURE_TYPE":"cloudevent","FUNCTION_TARGET":"sendTrapmosNotification","LOG_EXECUTION_ID":"true"},"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"963883946464-compute@developer.gserviceaccount.com","availableMemory":"256Mi","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"eventTrigger":{"trigger":"projects/finaltrapmos/locations/nam5/triggers/sendtrapmosnotification-529671","triggerRegion":"nam5","eventType":"google.cloud.firestore.document.v1.created","eventFilters":[{"attribute":"database","value":"(default)"},{"attribute":"namespace","value":"(default)"},{"attribute":"document","value":"Uploads/{docId}","operator":"match-path-pattern"}],"serviceAccountEmail":"963883946464-compute@developer.gserviceaccount.com","retryPolicy":"RETRY_POLICY_DO_NOT_RETRY"},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"d510ef5eaab9373dca4acb9732f90cd797f76145"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/963883946464/locations/us-central1/builds/94af569a-e4fd-4350-aba3-363564da2ce8","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/94af569a-e4fd-4350-aba3-363564da2ce8?project=963883946464"},{"name":"SERVICE","state":"NOT_STARTED"},{"name":"TRIGGER","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION","buildName":"projects/963883946464/locations/us-central1/builds/94af569a-e4fd-4350-aba3-363564da2ce8"},"done":false}
+[debug] [2025-05-09T01:48:18.808Z] [create-default-us-central1-sendTrapmosNotification] Retrying task index 0
+[debug] [2025-05-09T01:48:18.808Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:48:18.809Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:48:18.809Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 [none]
+[debug] [2025-05-09T01:48:20.789Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 200
+[debug] [2025-05-09T01:48:20.789Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 {"name":"projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-05-09T01:47:45.324108504Z","target":"projects/finaltrapmos/locations/us-central1/functions/sendTrapmosNotification","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/finaltrapmos/locations/us-central1/functions/sendTrapmosNotification","buildConfig":{"runtime":"nodejs18","entryPoint":"sendTrapmosNotification","source":{"storageSource":{"bucket":"gcf-v2-sources-963883946464-us-central1","object":"sendTrapmosNotification/function-source.zip","generation":"1746755264461896"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/finaltrapmos/serviceAccounts/963883946464-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/finaltrapmos/locations/us-central1/services/sendtrapmosnotification","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"finaltrapmos\",\"storageBucket\":\"finaltrapmos.firebasestorage.app\"}","GCLOUD_PROJECT":"finaltrapmos","EVENTARC_CLOUD_EVENT_SOURCE":"projects/finaltrapmos/locations/us-central1/services/sendTrapmosNotification","FUNCTION_SIGNATURE_TYPE":"cloudevent","FUNCTION_TARGET":"sendTrapmosNotification","LOG_EXECUTION_ID":"true"},"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"963883946464-compute@developer.gserviceaccount.com","availableMemory":"256Mi","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"eventTrigger":{"trigger":"projects/finaltrapmos/locations/nam5/triggers/sendtrapmosnotification-529671","triggerRegion":"nam5","eventType":"google.cloud.firestore.document.v1.created","eventFilters":[{"attribute":"database","value":"(default)"},{"attribute":"namespace","value":"(default)"},{"attribute":"document","value":"Uploads/{docId}","operator":"match-path-pattern"}],"serviceAccountEmail":"963883946464-compute@developer.gserviceaccount.com","retryPolicy":"RETRY_POLICY_DO_NOT_RETRY"},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"d510ef5eaab9373dca4acb9732f90cd797f76145"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/963883946464/locations/us-central1/builds/94af569a-e4fd-4350-aba3-363564da2ce8","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/94af569a-e4fd-4350-aba3-363564da2ce8?project=963883946464"},{"name":"SERVICE","state":"NOT_STARTED"},{"name":"TRIGGER","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION","buildName":"projects/963883946464/locations/us-central1/builds/94af569a-e4fd-4350-aba3-363564da2ce8"},"done":false}
+[debug] [2025-05-09T01:48:30.799Z] [create-default-us-central1-sendTrapmosNotification] Retrying task index 0
+[debug] [2025-05-09T01:48:30.800Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:48:30.800Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:48:30.800Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 [none]
+[debug] [2025-05-09T01:48:32.898Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 200
+[debug] [2025-05-09T01:48:32.898Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 {"name":"projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-05-09T01:47:45.324108504Z","target":"projects/finaltrapmos/locations/us-central1/functions/sendTrapmosNotification","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/finaltrapmos/locations/us-central1/functions/sendTrapmosNotification","buildConfig":{"runtime":"nodejs18","entryPoint":"sendTrapmosNotification","source":{"storageSource":{"bucket":"gcf-v2-sources-963883946464-us-central1","object":"sendTrapmosNotification/function-source.zip","generation":"1746755264461896"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/finaltrapmos/serviceAccounts/963883946464-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/finaltrapmos/locations/us-central1/services/sendtrapmosnotification","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"finaltrapmos\",\"storageBucket\":\"finaltrapmos.firebasestorage.app\"}","GCLOUD_PROJECT":"finaltrapmos","EVENTARC_CLOUD_EVENT_SOURCE":"projects/finaltrapmos/locations/us-central1/services/sendTrapmosNotification","FUNCTION_SIGNATURE_TYPE":"cloudevent","FUNCTION_TARGET":"sendTrapmosNotification","LOG_EXECUTION_ID":"true"},"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"963883946464-compute@developer.gserviceaccount.com","availableMemory":"256Mi","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"eventTrigger":{"trigger":"projects/finaltrapmos/locations/nam5/triggers/sendtrapmosnotification-529671","triggerRegion":"nam5","eventType":"google.cloud.firestore.document.v1.created","eventFilters":[{"attribute":"database","value":"(default)"},{"attribute":"namespace","value":"(default)"},{"attribute":"document","value":"Uploads/{docId}","operator":"match-path-pattern"}],"serviceAccountEmail":"963883946464-compute@developer.gserviceaccount.com","retryPolicy":"RETRY_POLICY_DO_NOT_RETRY"},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"d510ef5eaab9373dca4acb9732f90cd797f76145"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/963883946464/locations/us-central1/builds/94af569a-e4fd-4350-aba3-363564da2ce8","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/94af569a-e4fd-4350-aba3-363564da2ce8?project=963883946464"},{"name":"SERVICE","state":"NOT_STARTED"},{"name":"TRIGGER","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION","buildName":"projects/963883946464/locations/us-central1/builds/94af569a-e4fd-4350-aba3-363564da2ce8"},"done":false}
+[debug] [2025-05-09T01:48:42.907Z] [create-default-us-central1-sendTrapmosNotification] Retrying task index 0
+[debug] [2025-05-09T01:48:42.907Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:48:42.907Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:48:42.907Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 [none]
+[debug] [2025-05-09T01:48:44.237Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 200
+[debug] [2025-05-09T01:48:44.237Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6 {"name":"projects/finaltrapmos/locations/us-central1/operations/operation-1746755264174-634aa2707d9c1-50dba1e4-d9368bc6","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2025-05-09T01:47:45.324108504Z","endTime":"2025-05-09T01:48:39.351273220Z","target":"projects/finaltrapmos/locations/us-central1/functions/sendTrapmosNotification","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/finaltrapmos/locations/us-central1/functions/sendTrapmosNotification","buildConfig":{"runtime":"nodejs18","entryPoint":"sendTrapmosNotification","source":{"storageSource":{"bucket":"gcf-v2-sources-963883946464-us-central1","object":"sendTrapmosNotification/function-source.zip","generation":"1746755264461896"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/finaltrapmos/serviceAccounts/963883946464-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/finaltrapmos/locations/us-central1/services/sendtrapmosnotification","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"finaltrapmos\",\"storageBucket\":\"finaltrapmos.firebasestorage.app\"}","GCLOUD_PROJECT":"finaltrapmos","EVENTARC_CLOUD_EVENT_SOURCE":"projects/finaltrapmos/locations/us-central1/services/sendTrapmosNotification","FUNCTION_SIGNATURE_TYPE":"cloudevent","FUNCTION_TARGET":"sendTrapmosNotification","LOG_EXECUTION_ID":"true"},"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"963883946464-compute@developer.gserviceaccount.com","availableMemory":"256Mi","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"eventTrigger":{"trigger":"projects/finaltrapmos/locations/nam5/triggers/sendtrapmosnotification-529671","triggerRegion":"nam5","eventType":"google.cloud.firestore.document.v1.created","eventFilters":[{"attribute":"database","value":"(default)"},{"attribute":"namespace","value":"(default)"},{"attribute":"document","value":"Uploads/{docId}","operator":"match-path-pattern"}],"serviceAccountEmail":"963883946464-compute@developer.gserviceaccount.com","retryPolicy":"RETRY_POLICY_DO_NOT_RETRY"},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"d510ef5eaab9373dca4acb9732f90cd797f76145"},"environment":"GEN_2"},"stages":[{"name":"ARTIFACT_REGISTRY","message":"Deleting function artifacts in Artifact Registry","state":"COMPLETE"},{"name":"SERVICE","message":"Deleting Cloud Run service","state":"COMPLETE","resource":"projects/finaltrapmos/locations/us-central1/services/sendtrapmosnotification"},{"name":"TRIGGER","message":"Deleting Eventarc trigger","state":"COMPLETE","resource":"projects/finaltrapmos/locations/nam5/triggers/sendtrapmosnotification-529671"}],"operationType":"CREATE_FUNCTION"},"done":true,"error":{"code":3,"message":"Build failed with status: FAILURE and message: npm error code ERESOLVE\nnpm error ERESOLVE could not resolve\nnpm error\nnpm error While resolving: firebase-functions-test@3.3.0\nnpm error Found: firebase-admin@13.3.0\nnpm error node_modules/firebase-admin\nnpm error   firebase-admin@\"^13.3.0\" from the root project\nnpm error   peer firebase-admin@\"^11.10.0 || ^12.0.0 || ^13.0.0\" from firebase-functions@6.3.2\nnpm error   node_modules/firebase-functions\nnpm error     firebase-functions@\"^6.3.2\" from the root project\nnpm error     peer firebase-functions@\">=4.9.0\" from firebase-functions-test@3.3.0\nnpm error     node_modules/firebase-functions-test\nnpm error       dev firebase-functions-test@\"^3.1.0\" from the root project\nnpm error\nnpm error Could not resolve dependency:\nnpm error peer firebase-admin@\"^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0\" from firebase-functions-test@3.3.0\nnpm error node_modules/firebase-functions-test\nnpm error   dev firebase-functions-test@\"^3.1.0\" from the root project\nnpm error\nnpm error Conflicting peer dependency: firebase-admin@12.7.0\nnpm error node_modules/firebase-admin\nnpm error   peer firebase-admin@\"^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0\" from firebase-functions-test@3.3.0\nnpm error   node_modules/firebase-functions-test\nnpm error     dev firebase-functions-test@\"^3.1.0\" from the root project\nnpm error\nnpm error Fix the upstream dependency conflict, or retry\nnpm error this command with --force or --legacy-peer-deps\nnpm error to accept an incorrect (and potentially broken) dependency resolution.\nnpm error\nnpm error\nnpm error For a full report see:\nnpm error /www-data-home/.npm/_logs/2025-05-09T01_48_18_671Z-eresolve-report.txt\nnpm error A complete log of this run can be found in: /www-data-home/.npm/_logs/2025-05-09T01_48_18_671Z-debug-0.log. For more details see the logs at https://console.cloud.google.com/cloud-build/builds;region=us-central1/94af569a-e4fd-4350-aba3-363564da2ce8?project=963883946464."}}
+[debug] [2025-05-09T01:48:44.237Z] Got source token undefined for region us-central1
+[error] Build failed with status: FAILURE and message: npm error code ERESOLVE
+npm error ERESOLVE could not resolve
+npm error
+npm error While resolving: firebase-functions-test@3.3.0
+npm error Found: firebase-admin@13.3.0
+npm error node_modules/firebase-admin
+npm error   firebase-admin@"^13.3.0" from the root project
+npm error   peer firebase-admin@"^11.10.0 || ^12.0.0 || ^13.0.0" from firebase-functions@6.3.2
+npm error   node_modules/firebase-functions
+npm error     firebase-functions@"^6.3.2" from the root project
+npm error     peer firebase-functions@">=4.9.0" from firebase-functions-test@3.3.0
+npm error     node_modules/firebase-functions-test
+npm error       dev firebase-functions-test@"^3.1.0" from the root project
+npm error
+npm error Could not resolve dependency:
+npm error peer firebase-admin@"^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0" from firebase-functions-test@3.3.0
+npm error node_modules/firebase-functions-test
+npm error   dev firebase-functions-test@"^3.1.0" from the root project
+npm error
+npm error Conflicting peer dependency: firebase-admin@12.7.0
+npm error node_modules/firebase-admin
+npm error   peer firebase-admin@"^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0" from firebase-functions-test@3.3.0
+npm error   node_modules/firebase-functions-test
+npm error     dev firebase-functions-test@"^3.1.0" from the root project
+npm error
+npm error Fix the upstream dependency conflict, or retry
+npm error this command with --force or --legacy-peer-deps
+npm error to accept an incorrect (and potentially broken) dependency resolution.
+npm error
+npm error
+npm error For a full report see:
+npm error /www-data-home/.npm/_logs/2025-05-09T01_48_18_671Z-eresolve-report.txt
+npm error A complete log of this run can be found in: /www-data-home/.npm/_logs/2025-05-09T01_48_18_671Z-debug-0.log. For more details see the logs at https://console.cloud.google.com/cloud-build/builds;region=us-central1/94af569a-e4fd-4350-aba3-363564da2ce8?project=963883946464.
+[debug] [2025-05-09T01:48:44.242Z] Total Function Deployment time: 61266
+[debug] [2025-05-09T01:48:44.242Z] 1 Functions Deployed
+[debug] [2025-05-09T01:48:44.242Z] 1 Functions Errored
+[debug] [2025-05-09T01:48:44.242Z] 0 Function Deployments Aborted
+[debug] [2025-05-09T01:48:44.242Z] Average Function Deployment time: 61265
+[info] 
+[info] Functions deploy had errors with the following functions:
+	sendTrapmosNotification(us-central1)
+[info] i  functions: cleaning up build files... 
+[debug] [2025-05-09T01:48:44.323Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:48:44.323Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:48:44.323Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:48:44.323Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:48:44.323Z] >>> [apiv2][query] DELETE https://artifactregistry.googleapis.com/v1beta2/projects/finaltrapmos/locations/us-central1/repositories/gcf-artifacts/packages/send_trapmos_notification [none]
+[debug] [2025-05-09T01:48:44.324Z] >>> [apiv2][query] GET https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list [none]
+[debug] [2025-05-09T01:48:44.900Z] <<< [apiv2][status] GET https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list 404
+[debug] [2025-05-09T01:48:44.900Z] <<< [apiv2][body] GET https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list {"errors":[{"code":"NAME_UNKNOWN","message":"Repository \"us.gcr.io\" not found"}]}
+[debug] [2025-05-09T01:48:44.901Z] Failed docker command with error  Request to https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list had HTTP Error: 404, Not Found {"name":"FirebaseError","children":[],"context":{"body":{"errors":[{"code":"NAME_UNKNOWN","message":"Repository \"us.gcr.io\" not found"}],"error":{"message":"Not Found"}},"response":{"statusCode":404}},"exit":1,"message":"Request to https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list had HTTP Error: 404, Not Found","status":404}
+[debug] [2025-05-09T01:48:44.909Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:48:44.909Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:48:44.909Z] >>> [apiv2][query] GET https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list [none]
+[debug] [2025-05-09T01:48:45.302Z] <<< [apiv2][status] GET https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list 404
+[debug] [2025-05-09T01:48:45.302Z] <<< [apiv2][body] GET https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list {"errors":[{"code":"NAME_UNKNOWN","message":"Repository \"us.gcr.io\" not found"}]}
+[debug] [2025-05-09T01:48:45.302Z] Failed docker command with error  Request to https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list had HTTP Error: 404, Not Found {"name":"FirebaseError","children":[],"context":{"body":{"errors":[{"code":"NAME_UNKNOWN","message":"Repository \"us.gcr.io\" not found"}],"error":{"message":"Not Found"}},"response":{"statusCode":404}},"exit":1,"message":"Request to https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list had HTTP Error: 404, Not Found","status":404}
+[debug] [2025-05-09T01:48:45.416Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:48:45.416Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:48:45.417Z] >>> [apiv2][query] GET https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list [none]
+[debug] [2025-05-09T01:48:45.698Z] <<< [apiv2][status] DELETE https://artifactregistry.googleapis.com/v1beta2/projects/finaltrapmos/locations/us-central1/repositories/gcf-artifacts/packages/send_trapmos_notification 404
+[debug] [2025-05-09T01:48:45.698Z] <<< [apiv2][body] DELETE https://artifactregistry.googleapis.com/v1beta2/projects/finaltrapmos/locations/us-central1/repositories/gcf-artifacts/packages/send_trapmos_notification {"error":{"code":404,"message":"Package \"projects/finaltrapmos/locations/us-central1/repositories/gcf-artifacts/packages/send_trapmos_notification\" was not found.","status":"NOT_FOUND"}}
+[debug] [2025-05-09T01:48:45.797Z] <<< [apiv2][status] GET https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list 404
+[debug] [2025-05-09T01:48:45.797Z] <<< [apiv2][body] GET https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list {"errors":[{"code":"NAME_UNKNOWN","message":"Repository \"us.gcr.io\" not found"}]}
+[debug] [2025-05-09T01:48:45.797Z] Failed docker command with error  Request to https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list had HTTP Error: 404, Not Found {"name":"FirebaseError","children":[],"context":{"body":{"errors":[{"code":"NAME_UNKNOWN","message":"Repository \"us.gcr.io\" not found"}],"error":{"message":"Not Found"}},"response":{"statusCode":404}},"exit":1,"message":"Request to https://us.gcr.io/v2/finaltrapmos/gcf/us-central1/tags/list had HTTP Error: 404, Not Found","status":404}
+[warn] !  functions: Unhandled error cleaning up build images. This could result in a small monthly bill if not corrected. You can attempt to delete these images by redeploying or you can delete them manually at https://console.cloud.google.com/gcr/images/finaltrapmos/us/gcf 
+[debug] [2025-05-09T01:48:45.798Z] Functions deploy failed.
+[debug] [2025-05-09T01:48:45.798Z] {
+  "endpoint": {
+    "id": "sendTrapmosNotification",
+    "project": "finaltrapmos",
+    "region": "us-central1",
+    "entryPoint": "sendTrapmosNotification",
+    "platform": "gcfv2",
+    "runtime": "nodejs18",
+    "eventTrigger": {
+      "eventType": "google.cloud.firestore.document.v1.created",
+      "retry": false,
+      "eventFilters": {
+        "database": "(default)",
+        "namespace": "(default)"
+      },
+      "eventFilterPathPatterns": {
+        "document": "Uploads/{docId}"
+      },
+      "region": "nam5"
+    },
+    "labels": {
+      "deployment-tool": "cli-firebase"
+    },
+    "ingressSettings": null,
+    "availableMemoryMb": null,
+    "serviceAccount": null,
+    "timeoutSeconds": null,
+    "maxInstances": null,
+    "minInstances": null,
+    "concurrency": 80,
+    "vpc": null,
+    "environmentVariables": {
+      "FIREBASE_CONFIG": "{\"projectId\":\"finaltrapmos\",\"storageBucket\":\"finaltrapmos.firebasestorage.app\"}",
+      "GCLOUD_PROJECT": "finaltrapmos",
+      "EVENTARC_CLOUD_EVENT_SOURCE": "projects/finaltrapmos/locations/us-central1/services/sendTrapmosNotification"
+    },
+    "codebase": "default",
+    "cpu": 1,
+    "targetedByOnly": false,
+    "hash": "d510ef5eaab9373dca4acb9732f90cd797f76145"
+  },
+  "op": "create",
+  "original": {
+    "name": "FirebaseError",
+    "children": [],
+    "exit": 1,
+    "message": "Build failed with status: FAILURE and message: npm error code ERESOLVE\nnpm error ERESOLVE could not resolve\nnpm error\nnpm error While resolving: firebase-functions-test@3.3.0\nnpm error Found: firebase-admin@13.3.0\nnpm error node_modules/firebase-admin\nnpm error   firebase-admin@\"^13.3.0\" from the root project\nnpm error   peer firebase-admin@\"^11.10.0 || ^12.0.0 || ^13.0.0\" from firebase-functions@6.3.2\nnpm error   node_modules/firebase-functions\nnpm error     firebase-functions@\"^6.3.2\" from the root project\nnpm error     peer firebase-functions@\">=4.9.0\" from firebase-functions-test@3.3.0\nnpm error     node_modules/firebase-functions-test\nnpm error       dev firebase-functions-test@\"^3.1.0\" from the root project\nnpm error\nnpm error Could not resolve dependency:\nnpm error peer firebase-admin@\"^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0\" from firebase-functions-test@3.3.0\nnpm error node_modules/firebase-functions-test\nnpm error   dev firebase-functions-test@\"^3.1.0\" from the root project\nnpm error\nnpm error Conflicting peer dependency: firebase-admin@12.7.0\nnpm error node_modules/firebase-admin\nnpm error   peer firebase-admin@\"^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0\" from firebase-functions-test@3.3.0\nnpm error   node_modules/firebase-functions-test\nnpm error     dev firebase-functions-test@\"^3.1.0\" from the root project\nnpm error\nnpm error Fix the upstream dependency conflict, or retry\nnpm error this command with --force or --legacy-peer-deps\nnpm error to accept an incorrect (and potentially broken) dependency resolution.\nnpm error\nnpm error\nnpm error For a full report see:\nnpm error /www-data-home/.npm/_logs/2025-05-09T01_48_18_671Z-eresolve-report.txt\nnpm error A complete log of this run can be found in: /www-data-home/.npm/_logs/2025-05-09T01_48_18_671Z-debug-0.log. For more details see the logs at https://console.cloud.google.com/cloud-build/builds;region=us-central1/94af569a-e4fd-4350-aba3-363564da2ce8?project=963883946464.",
+    "original": {
+      "code": 3,
+      "message": "Build failed with status: FAILURE and message: npm error code ERESOLVE\nnpm error ERESOLVE could not resolve\nnpm error\nnpm error While resolving: firebase-functions-test@3.3.0\nnpm error Found: firebase-admin@13.3.0\nnpm error node_modules/firebase-admin\nnpm error   firebase-admin@\"^13.3.0\" from the root project\nnpm error   peer firebase-admin@\"^11.10.0 || ^12.0.0 || ^13.0.0\" from firebase-functions@6.3.2\nnpm error   node_modules/firebase-functions\nnpm error     firebase-functions@\"^6.3.2\" from the root project\nnpm error     peer firebase-functions@\">=4.9.0\" from firebase-functions-test@3.3.0\nnpm error     node_modules/firebase-functions-test\nnpm error       dev firebase-functions-test@\"^3.1.0\" from the root project\nnpm error\nnpm error Could not resolve dependency:\nnpm error peer firebase-admin@\"^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0\" from firebase-functions-test@3.3.0\nnpm error node_modules/firebase-functions-test\nnpm error   dev firebase-functions-test@\"^3.1.0\" from the root project\nnpm error\nnpm error Conflicting peer dependency: firebase-admin@12.7.0\nnpm error node_modules/firebase-admin\nnpm error   peer firebase-admin@\"^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0\" from firebase-functions-test@3.3.0\nnpm error   node_modules/firebase-functions-test\nnpm error     dev firebase-functions-test@\"^3.1.0\" from the root project\nnpm error\nnpm error Fix the upstream dependency conflict, or retry\nnpm error this command with --force or --legacy-peer-deps\nnpm error to accept an incorrect (and potentially broken) dependency resolution.\nnpm error\nnpm error\nnpm error For a full report see:\nnpm error /www-data-home/.npm/_logs/2025-05-09T01_48_18_671Z-eresolve-report.txt\nnpm error A complete log of this run can be found in: /www-data-home/.npm/_logs/2025-05-09T01_48_18_671Z-debug-0.log. For more details see the logs at https://console.cloud.google.com/cloud-build/builds;region=us-central1/94af569a-e4fd-4350-aba3-363564da2ce8?project=963883946464."
+    },
+    "status": 3,
+    "code": 3
+  }
+}
+[debug] [2025-05-09T01:48:45.835Z] Error: Failed to create function sendTrapmosNotification in region us-central1
+    at C:\Users\Ching\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:294:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Fabricator.createV2Function (C:\Users\Ching\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:278:30)
+    at async Fabricator.createEndpoint (C:\Users\Ching\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:137:13)
+    at async handle (C:\Users\Ching\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release\fabricator.js:89:17)
+[error] 
+[error] Error: There was an error deploying functions

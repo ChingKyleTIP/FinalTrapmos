@@ -1,0 +1,20 @@
+# Exclude all system + cache folders
+AppData/**
+appdata/**
+**/AppData/**
+**/appdata/**
+.Roaming
+.Roaming/**
+node_modules
+.expo
+.git
+.gradle
+.gradle/**
+*.log
+*.tmp
+*.ldb
+*.lock
+*.bin
+*.apk
+*.aab
+.DS_Store

@@ -1,0 +1,61 @@
+[debug] [2025-05-09T01:59:07.415Z] ----------------------------------------------------------------------
+[debug] [2025-05-09T01:59:07.417Z] Command:       C:\nvm4w\nodejs\node.exe C:\Users\Ching\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js functions:shell
+[debug] [2025-05-09T01:59:07.418Z] CLI Version:   13.27.0
+[debug] [2025-05-09T01:59:07.418Z] Platform:      win32
+[debug] [2025-05-09T01:59:07.418Z] Node Version:  v20.11.0
+[debug] [2025-05-09T01:59:07.418Z] Time:          Fri May 09 2025 09:59:07 GMT+0800 (Philippine Standard Time)
+[debug] [2025-05-09T01:59:07.418Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-05-09T01:59:07.479Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-05-09T01:59:07.479Z] > authorizing via signed-in user (qkjpching@tip.edu.ph)
+[debug] [2025-05-09T01:59:07.479Z] [iam] checking project finaltrapmos for permissions ["firebase.projects.get"]
+[debug] [2025-05-09T01:59:07.480Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:59:07.480Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:59:07.481Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos:testIamPermissions [none]
+[debug] [2025-05-09T01:59:07.481Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos:testIamPermissions x-goog-quota-user=projects/finaltrapmos
+[debug] [2025-05-09T01:59:07.481Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-05-09T01:59:08.392Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos:testIamPermissions 200
+[debug] [2025-05-09T01:59:08.392Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/finaltrapmos:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-05-09T01:59:08.395Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-05-09T01:59:08.397Z] defaultcredentials: writing to file C:\Users\Ching\AppData\Roaming\firebase\qkjpching_tip_edu.ph_application_default_credentials.json
+[debug] [2025-05-09T01:59:08.398Z] DEBUG: Setting GAC to C:\Users\Ching\AppData\Roaming\firebase\qkjpching_tip_edu.ph_application_default_credentials.json
+[debug] [2025-05-09T01:59:08.399Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:59:08.399Z] Checked if tokens are valid: true, expires at: 1746757320227
+[debug] [2025-05-09T01:59:08.399Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/finaltrapmos/adminSdkConfig [none]
+[debug] [2025-05-09T01:59:09.713Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/finaltrapmos/adminSdkConfig 200
+[debug] [2025-05-09T01:59:09.713Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/finaltrapmos/adminSdkConfig {"projectId":"finaltrapmos","storageBucket":"finaltrapmos.firebasestorage.app"}
+[debug] [2025-05-09T01:59:09.724Z] [functions] Watching "C:\Users\Ching\Documents\New-Trapmos\FinalTrapmos-master (1)\FinalTrapmos-master\functions" for Cloud Functions...
+[debug] [2025-05-09T01:59:09.728Z] Validating nodejs source
+[debug] [2025-05-09T01:59:10.384Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^13.3.0",
+    "firebase-functions": "^6.3.2",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.15.0",
+    "eslint-config-google": "^0.14.0"
+  },
+  "private": true
+}
+[debug] [2025-05-09T01:59:10.384Z] Building nodejs source
+[debug] [2025-05-09T01:59:10.385Z] Failed to find version of module node: reached end of search path C:\Users\Ching\Documents\New-Trapmos\FinalTrapmos-master (1)\FinalTrapmos-master\functions\node_modules
+[warn] !  functions: Your requested "node" version "18" doesn't match your global version "20". Using node@20 from host. 
+[debug] [2025-05-09T01:59:10.387Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-05-09T01:59:10.392Z] Found firebase-functions binary at 'C:\Users\Ching\Documents\New-Trapmos\FinalTrapmos-master (1)\FinalTrapmos-master\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8058
+
+[debug] [2025-05-09T01:59:10.717Z] Got response from /__/functions.yaml {"endpoints":{"sendTrapmosNotification":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"eventTrigger":{"eventType":"google.cloud.firestore.document.v1.created","eventFilters":{"database":"(default)","namespace":"(default)"},"eventFilterPathPatterns":{"document":"Uploads/{docId}"},"retry":false},"entryPoint":"sendTrapmosNotification"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
