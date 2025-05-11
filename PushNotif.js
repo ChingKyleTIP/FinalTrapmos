@@ -51,10 +51,8 @@ export async function registerForPushNotificationsAsync() {
       }, { merge: true });
 
       console.log('Token saved successfully');
-      Alert.alert('Success', 'Push notification token saved successfully');
     } catch (error) {
       console.error('Error saving token:', error);
-      Alert.alert('Error', `Failed to save push token: ${error.message}`);
     }
   }
 
