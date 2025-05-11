@@ -14,11 +14,11 @@
       "checkAutomatically": "ON_LOAD",
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
-
-   
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "android": {
-      "package": "com.yourname.yourapp",              
+      "package": "com.trapmos",
       "googleServicesFile": "./google-services.json",
       "versionCode": 1,
       "permissions": [
@@ -26,7 +26,10 @@
         "ACCESS_COARSE_LOCATION",
         "CAMERA",
         "READ_EXTERNAL_STORAGE",
-        "WRITE_EXTERNAL_STORAGE"
+        "WRITE_EXTERNAL_STORAGE",
+        "RECEIVE_BOOT_COMPLETED",
+        "VIBRATE",
+        "WAKE_LOCK"
       ],
       "config": {
         "googleMaps": {
@@ -34,16 +37,25 @@
         }
       }
     },
-
     "web": {
       "favicon": "./assets/favicon.png"
     },
-
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#ffffff",
+          "sounds": [
+            "./assets/notification-sound.wav"
+          ]
+        }
+      ]
+    ],
     "newArchEnabled": true,
-
     "extra": {
       "eas": {
-        "projectId": "ca95e0f6-b6da-4eac-8b3f-4bbe6d5fdae8"
+        "projectId": "d5ffb1b3-e8ab-4ec3-88ea-2276d2b4d3f7"
       }
     }
   }

@@ -6,12 +6,12 @@ import { initializeAuth, getReactNativePersistence, getAuth } from 'firebase/aut
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAH43IdapLXl7g5MLxHTvgdQ2SWiD4Ia_8',
+  apiKey: 'AIzaSyD9kADv0gULGOL8VCAHxPUe1kclSV4usqE',
   authDomain: 'finaltrapmos.firebaseapp.com',
   projectId: 'finaltrapmos',
   storageBucket: 'finaltrapmos.firebasestorage.app',
   messagingSenderId: '963883946464',
-  appId: '1:963883946464:web:3a12d832bac04424799b85',
+  appId: '1:963883946464:android:ce2563379538b327799b85'
 };
 
 // ✅ Safe initialization

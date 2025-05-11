@@ -1,13 +1,15 @@
 import * as Notifications from 'expo-notifications';
 import * as Device from 'expo-device';
 import Constants from 'expo-constants';
-import { Alert } from 'react-native';
-import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
+import { Alert, Platform } from 'react-native';
+import { collection, addDoc, query, where, getDocs, doc, setDoc } from 'firebase/firestore';
 import { db } from './config/firebaseConfig'; // ✅ Adjust path if needed
+import { getAuth } from 'firebase/auth';
+import * as Application from 'expo-application';
 
 /**
  * Call once on startup to register for notifications and
- * store the device’s push token in Firestore (APK only).
+ * store the device's push token in Firestore (APK only).
  */
 export async function registerForPushNotificationsAsync() {
   if (!Device.isDevice) {
@@ -15,48 +17,48 @@ export async function registerForPushNotificationsAsync() {
     return;
   }
 
-  // Ask notification permission
+  // Request permissions
   const { status: existingStatus } = await Notifications.getPermissionsAsync();
   let finalStatus = existingStatus;
-
   if (existingStatus !== 'granted') {
     const { status } = await Notifications.requestPermissionsAsync();
     finalStatus = status;
   }
-
   if (finalStatus !== 'granted') {
-    Alert.alert('Permission Required', 'Notification permission not granted');
+    Alert.alert('Error', 'Failed to get push notification permissions!');
     return;
   }
 
-  try {
-    const token = (await Notifications.getExpoPushTokenAsync()).data;
+  // Get the push token
+  const token = await Notifications.getExpoPushTokenAsync({
+    projectId: Constants.expoConfig.extra.eas.projectId,
+  });
 
-    // ✅ Skip Expo Go tokens and web builds
-    if (
-      token.startsWith('ExponentPushToken') ||
-      Constants.expoConfig?.hostUri // indicates Expo Go usage
-    ) {
-      console.log('🛑 Expo Go or development token — skipping:', token);
-      return;
+  // Save the token to Firestore
+  if (token) {
+    try {
+      console.log('Saving token to Firestore...');
+      
+      // Use the push token as the document ID
+      const tokenDocRef = doc(db, 'PushTokens', token.data);
+      
+      await setDoc(tokenDocRef, {
+        token: token.data,
+        updatedAt: new Date().toISOString(),
+        platform: Platform.OS,
+        appVersion: Application.nativeApplicationVersion || 'unknown',
+        deviceType: Device.deviceType || 'unknown'
+      }, { merge: true });
+
+      console.log('Token saved successfully');
+      Alert.alert('Success', 'Push notification token saved successfully');
+    } catch (error) {
+      console.error('Error saving token:', error);
+      Alert.alert('Error', `Failed to save push token: ${error.message}`);
     }
-
-    console.log('✅ APK Push Token:', token);
-
-    // Avoid duplicates
-    const q = query(collection(db, 'PushTokens'), where('token', '==', token));
-    const snap = await getDocs(q);
-    if (!snap.empty) {
-      console.log('ℹ️ Token already stored in Firestore');
-      return;
-    }
-
-    await addDoc(collection(db, 'PushTokens'), { token, timestamp: Date.now() });
-    console.log('📥 Token saved to Firestore');
-  } catch (error) {
-    console.error('🔥 Failed to save push token:', error);
-    Alert.alert('Save token failed', error.message);
   }
+
+  return token;
 }
 
 /** Global handler so notifications show alert & sound */
@@ -65,7 +67,7 @@ export function configureNotificationHandler() {
     handleNotification: async () => ({
       shouldShowAlert: true,
       shouldPlaySound: true,
-      shouldSetBadge: false,
+      shouldSetBadge: true,
     }),
   });
 }

@@ -1,15 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { TouchableOpacity, Text, Alert } from 'react-native';
 import * as Notifications from 'expo-notifications';
 import Constants from 'expo-constants';
-import { auth } from './config/firebaseConfig';
-
-// 👉 PushNotif helper
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
-import { getApp } from 'firebase/app';
-const db = getFirestore(getApp());
+import { auth, db } from './config/firebaseConfig';
+import { onAuthStateChanged } from 'firebase/auth';
+import { registerForPushNotificationsAsync } from './PushNotif';
 
 // Screens
 import SplashScreen from './screens/SplashScreen';
@@ -21,43 +18,54 @@ import AlertsScreen from './screens/AlertsScreen';
 import MapScreen from './screens/MapScreen';
 import DataBaseScreen from './screens/DataBaseScreen';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
-// Configure global notification handler
+// Configure notification handler
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
     shouldPlaySound: true,
-    shouldSetBadge: false,
+    shouldSetBadge: true,
   }),
 });
 
 export default function App() {
+  const [user, setUser] = useState(null);
+  const [expoPushToken, setExpoPushToken] = useState('');
+  const [notification, setNotification] = useState(false);
+  const notificationListener = useRef();
+  const responseListener = useRef();
+
   useEffect(() => {
-    const setupNotifications = async () => {
-      const { status } = await Notifications.requestPermissionsAsync();
-      if (status !== 'granted') return;
-
-      const tokenData = await Notifications.getExpoPushTokenAsync();
-      const token = tokenData.data;
-
-      // ✅ Only save push token if NOT from Expo Go
-      if (!Constants.expoConfig?.hostUri && !token.startsWith('ExponentPushToken')) {
-        await addDoc(collection(db, 'PushTokens'), {
-          token,
-          timestamp: Date.now(),
-        });
+    // Register for push notifications
+    registerForPushNotificationsAsync().then(token => {
+      if (token) {
+        setExpoPushToken(token.data);
       }
-    };
-
-    setupNotifications();
-
-    const sub = Notifications.addNotificationReceivedListener((n) => {
-      const c = n.request.content;
-      Alert.alert(c.title || 'Alert', c.body || '');
     });
 
-    return () => sub.remove();
+    // Listen for incoming notifications
+    notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
+      setNotification(notification);
+    });
+
+    // Listen for user interactions with notifications
+    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
+      console.log(response);
+    });
+
+    // Clean up listeners
+    return () => {
+      Notifications.removeNotificationSubscription(notificationListener.current);
+      Notifications.removeNotificationSubscription(responseListener.current);
+    };
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+    return unsubscribe;
   }, []);
 
   const handleLogout = (nav) => {
