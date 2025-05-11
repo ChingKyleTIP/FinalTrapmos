@@ -14,7 +14,8 @@ const getAddressFromCoords = async (lat, lng) => {
     );
     const data = await response.json();
     if (data.display_name) {
-      return data.display_name;
+      const addressParts = data.display_name.split(', ');
+      return addressParts.slice(0, -3).join(', ');
     }
   } catch (error) {
     console.warn('Reverse geocoding failed:', error);
