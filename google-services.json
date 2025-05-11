@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:963883946464:android:19971f285f48c6a6799b85",
+        "mobilesdk_app_id": "1:963883946464:android:ce2563379538b327799b85",
         "android_client_info": {
-          "package_name": "com.yourname.yourapp"
+          "package_name": "com.trapmos"
         }
       },
       "oauth_client": [
