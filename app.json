@@ -4,7 +4,7 @@
     "slug": "your-app-slug",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./images/icon.png",
+    "icon": "./images/trapmos.png",
     "splash": {
       "image": "./assets/splash.png",
       "backgroundColor": "#ffffff"
