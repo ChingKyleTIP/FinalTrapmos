@@ -4,7 +4,7 @@
     "slug": "your-app-slug",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./images/1.png",
+    "icon": "./images/trapmos.png",
     "splash": {
       "image": "./assets/splash.png",
       "backgroundColor": "#ffffff"
@@ -37,18 +37,13 @@
         }
       }
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
     "plugins": [
       [
         "expo-notifications",
         {
-          "icon": "./assets/notification-icon.png",
+          "icon": "./images/trapmos.png",
           "color": "#ffffff",
-          "sounds": [
-            "./assets/notification-sound.wav"
-          ]
+          "sounds": []
         }
       ]
     ],
