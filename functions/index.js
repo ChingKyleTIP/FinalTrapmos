@@ -1,16 +1,36 @@
 const { onDocumentCreated } = require('firebase-functions/v2/firestore');
 const { initializeApp } = require('firebase-admin/app');
 const { getFirestore } = require('firebase-admin/firestore');
+
 const fetch = require('node-fetch');
 
 initializeApp();
 const db = getFirestore();
 
+const getAddressFromCoords = async (lat, lng) => {
+  try {
+    const response = await fetch(
+      `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1`
+    );
+    const data = await response.json();
+    if (data.display_name) {
+      return data.display_name;
+    }
+  } catch (error) {
+    console.warn('Reverse geocoding failed:', error);
+  }
+  return `Lat: ${lat.toFixed(7)}, Lng: ${lng.toFixed(7)}`;
+};
+
 exports.sendTrapmosNotification = onDocumentCreated('Uploads/{uploadId}', async (event) => {
   const data = event.data.data(); // For v2 events
+  const lat = parseFloat(data.latitude);
+  const lng = parseFloat(data.longitude);
+
+  const address = await getAddressFromCoords(lat, lng);
 
   const title = 'Mosquito Detection Alert!';
-  const body = `Detected species: ${data.species || 'Unknown mosquito'}`;
+  const body = `An Aedes mosquito has been detected in ${address}`;
 
   const tokenDocs = await db.collection('PushTokens').get();
 
@@ -35,8 +55,7 @@ exports.sendTrapmosNotification = onDocumentCreated('Uploads/{uploadId}', async 
   await db.collection("PushHistory").add({
     message: body,
     timestamp: new Date(),
-    totalRecipients: messages.length,
-    species: data.species || "Unknown mosquito"
+    totalRecipients: messages.length
   });
 
   const responses = await Promise.all(messages.map(async (msg) => {
