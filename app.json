@@ -4,7 +4,7 @@
     "slug": "your-app-slug",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./images/trapmos.png",
+    "icon": "./images/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "backgroundColor": "#ffffff"
@@ -41,7 +41,7 @@
       [
         "expo-notifications",
         {
-          "icon": "./images/trapmos.png",
+          "icon": "./images/icon.png",
           "color": "#ffffff",
           "sounds": []
         }
