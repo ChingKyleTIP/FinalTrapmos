@@ -16,6 +16,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../config/firebaseConfig';
 import * as Haptics from 'expo-haptics';
 import { Audio } from 'expo-av';
+import { registerForPushNotificationsAsync } from '../PushNotif';
 
 export default function AlertsScreen() {
   const navigation = useNavigation();
@@ -64,6 +65,7 @@ export default function AlertsScreen() {
   };
 
   useEffect(() => {
+    registerForPushNotificationsAsync();
     fetchAllAlerts();
     const interval = setInterval(fetchAllAlerts, 10000);
     return () => clearInterval(interval);
@@ -107,7 +109,6 @@ export default function AlertsScreen() {
     }
 
     const imageUrl = `https://firebasestorage.googleapis.com/v0/b/finaltrapmos.firebasestorage.app/o/TRAPMOS_00000%2F${encodeURIComponent(filename)}?alt=media`;
-    console.log('📸 Attempting to load image:', imageUrl);
     setSelectedImage(imageUrl);
     setModalVisible(true);
   };
@@ -172,7 +173,6 @@ export default function AlertsScreen() {
 
       <Button title="Go Back" onPress={() => navigation.goBack()} />
 
-      {/* Image Modal */}
       <Modal visible={modalVisible} transparent animationType="fade">
         <View style={styles.modalBackground}>
           <Pressable style={styles.modalContainer} onPress={() => setModalVisible(false)}>
@@ -180,9 +180,7 @@ export default function AlertsScreen() {
               <Image
                 source={{ uri: selectedImage }}
                 style={styles.modalImage}
-                onError={(e) =>
-                  console.log('❌ Failed to load image:', e.nativeEvent?.error)
-                }
+                onError={(e) => console.log('❌ Failed to load image:', e.nativeEvent?.error)}
               />
             )}
             <Text style={styles.modalCloseText}>Tap anywhere to close</Text>

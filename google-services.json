@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "963883946464",
+    "project_id": "finaltrapmos",
+    "storage_bucket": "finaltrapmos.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:963883946464:android:19971f285f48c6a6799b85",
+        "android_client_info": {
+          "package_name": "com.yourname.yourapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "963883946464-nj1970ov8drfpcvd1pefht5lpfs87sm0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9kADv0gULGOL8VCAHxPUe1kclSV4usqE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "963883946464-nj1970ov8drfpcvd1pefht5lpfs87sm0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

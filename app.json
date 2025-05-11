@@ -1,8 +1,7 @@
 {
   "expo": {
     "name": "Trapmos",
-    "slug": "your-app-slug",                   
-    "platforms": ["android"],
+    "slug": "your-app-slug",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./images/1.png",
@@ -16,8 +15,11 @@
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
+
+   
     "android": {
-      "package": "com.yourname.yourapp",
+      "package": "com.yourname.yourapp",              
+      "googleServicesFile": "./google-services.json",
       "versionCode": 1,
       "permissions": [
         "ACCESS_FINE_LOCATION",
@@ -32,10 +34,13 @@
         }
       }
     },
+
     "web": {
       "favicon": "./assets/favicon.png"
     },
+
     "newArchEnabled": true,
+
     "extra": {
       "eas": {
         "projectId": "ca95e0f6-b6da-4eac-8b3f-4bbe6d5fdae8"

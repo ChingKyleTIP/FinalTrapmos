@@ -3,8 +3,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { TouchableOpacity, Text, Alert } from 'react-native';
 import * as Notifications from 'expo-notifications';
-import * as Device from 'expo-device';
-import { collection, addDoc } from 'firebase/firestore';
+import Constants from 'expo-constants';
+import { auth } from './config/firebaseConfig';
+
+// 👉 PushNotif helper
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { getApp } from 'firebase/app';
+const db = getFirestore(getApp());
+
+// Screens
 import SplashScreen from './screens/SplashScreen';
 import LoginScreen from './screens/LoginScreen';
 import SignUpScreen from './screens/SignUpScreen';
@@ -13,60 +20,54 @@ import StatisticsScreen from './screens/StatisticsScreen';
 import AlertsScreen from './screens/AlertsScreen';
 import MapScreen from './screens/MapScreen';
 import DataBaseScreen from './screens/DataBaseScreen';
-import UploadScreen from './screens/UploadScreen';
-import { auth, db } from './config/firebaseConfig';
 
 const Stack = createStackNavigator();
 
-// Register and store Expo push token
-const registerAndSaveToken = async () => {
-  if (!Device.isDevice) {
-    alert('Must use a physical device for push notifications');
-    return;
-  }
-
-  const { status: existingStatus } = await Notifications.getPermissionsAsync();
-  let finalStatus = existingStatus;
-
-  if (existingStatus !== 'granted') {
-    const { status } = await Notifications.requestPermissionsAsync();
-    finalStatus = status;
-  }
-
-  if (finalStatus !== 'granted') {
-    alert('Permission denied for notifications!');
-    return;
-  }
-
-  const token = (await Notifications.getExpoPushTokenAsync()).data;
-  console.log('📱 Expo Push Token:', token);
-
-  // Optional: prevent duplicate token storage
-  await addDoc(collection(db, 'PushTokens'), { token });
-};
+// Configure global notification handler
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: false,
+  }),
+});
 
 export default function App() {
   useEffect(() => {
-    registerAndSaveToken();
+    const setupNotifications = async () => {
+      const { status } = await Notifications.requestPermissionsAsync();
+      if (status !== 'granted') return;
 
-    const subscription = Notifications.addNotificationReceivedListener(notification => {
-      const content = notification.request.content;
-      Alert.alert(content.title || 'Alert', content.body || 'Aedes detected!');
+      const tokenData = await Notifications.getExpoPushTokenAsync();
+      const token = tokenData.data;
+
+      // ✅ Only save push token if NOT from Expo Go
+      if (!Constants.expoConfig?.hostUri && !token.startsWith('ExponentPushToken')) {
+        await addDoc(collection(db, 'PushTokens'), {
+          token,
+          timestamp: Date.now(),
+        });
+      }
+    };
+
+    setupNotifications();
+
+    const sub = Notifications.addNotificationReceivedListener((n) => {
+      const c = n.request.content;
+      Alert.alert(c.title || 'Alert', c.body || '');
     });
 
-    return () => subscription.remove();
+    return () => sub.remove();
   }, []);
 
-  const handleLogout = (navigation) => {
+  const handleLogout = (nav) => {
     auth
       .signOut()
       .then(() => {
         Alert.alert('Logout', 'You have been logged out successfully!');
-        navigation.replace('Login');
+        nav.replace('Login');
       })
-      .catch((error) => {
-        Alert.alert('Error', `Failed to log out: ${error.message}`);
-      });
+      .catch((e) => Alert.alert('Error', `Failed to log out: ${e.message}`));
   };
 
   return (
@@ -84,66 +85,24 @@ export default function App() {
             headerStyle: { backgroundColor: '#0f1924' },
             headerTintColor: '#fff',
             headerRight: () => (
-              <TouchableOpacity
-                onPress={() => handleLogout(navigation)}
-                style={{ marginRight: 15 }}
-              >
+              <TouchableOpacity onPress={() => handleLogout(navigation)} style={{ marginRight: 15 }}>
                 <Text style={{ color: '#fff', fontSize: 16 }}>Logout</Text>
               </TouchableOpacity>
             ),
           })}
         />
-        <Stack.Screen
-          name="Statistics"
-          component={StatisticsScreen}
-          options={{
-            headerShown: true,
-            headerTitle: 'Statistics',
-            headerStyle: { backgroundColor: '#0f1924' },
-            headerTintColor: '#fff',
-          }}
-        />
-        <Stack.Screen
-          name="Alerts"
-          component={AlertsScreen}
-          options={{
-            headerShown: true,
-            headerTitle: 'Alerts',
-            headerStyle: { backgroundColor: '#0f1924' },
-            headerTintColor: '#fff',
-          }}
-        />
-        <Stack.Screen
-          name="Map"
-          component={MapScreen}
-          options={{
-            headerShown: true,
-            headerTitle: 'Map',
-            headerStyle: { backgroundColor: '#0f1924' },
-            headerTintColor: '#fff',
-          }}
-        />
-        <Stack.Screen
-          name="Database"
-          component={DataBaseScreen}
-          options={{
-            headerShown: true,
-            headerTitle: 'Database',
-            headerStyle: { backgroundColor: '#0f1924' },
-            headerTintColor: '#fff',
-          }}
-        />
-        <Stack.Screen
-          name="UploadScreen"
-          component={UploadScreen}
-          options={{
-            headerShown: true,
-            headerTitle: 'Upload Photo',
-            headerStyle: { backgroundColor: '#0f1924' },
-            headerTintColor: '#fff',
-          }}
-        />
+        <Stack.Screen name="Statistics" component={StatisticsScreen} options={headerOptions('Statistics')} />
+        <Stack.Screen name="Alerts" component={AlertsScreen} options={headerOptions('Alerts')} />
+        <Stack.Screen name="Map" component={MapScreen} options={headerOptions('Map')} />
+        <Stack.Screen name="Database" component={DataBaseScreen} options={headerOptions('Database')} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
+
+const headerOptions = (title) => ({
+  headerShown: true,
+  headerTitle: title,
+  headerStyle: { backgroundColor: '#0f1924' },
+  headerTintColor: '#fff',
+});
